@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "900946710847",
+    "project_id": "github-igenius",
+    "storage_bucket": "github-igenius.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900946710847:android:c9fd43d418d86a63b6838a",
+        "android_client_info": {
+          "package_name": "com.example.github.igenius"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900946710847-d5tljdfea56e7du1lkh70jbv46t4tdbm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.github.igenius",
+            "certificate_hash": "9087ee3aafeecb5708fea5a3d869fedb3e9e1b25"
+          }
+        },
+        {
+          "client_id": "900946710847-ea15at9pnge34el6brcg5pknmbtbmujj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2W9RnQEwaoHEGC7Ojueo9Hq8iDZ3DS5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900946710847-ea15at9pnge34el6brcg5pknmbtbmujj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
