@@ -129,10 +129,13 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
 
-    //firebase Import the Firebase BoM
-    implementation platform('com.google.firebase:firebase-bom:29.0.3')
-    // Declare the dependency for the Firebase Authentication library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
-    implementation 'com.google.firebase:firebase-auth'
+    implementation "com.google.firebase:firebase-auth-ktx:21.0.1"
+
+    // [START gradle_firebase_ui_auth]
+    implementation "com.firebaseui:firebase-ui-auth:8.0.0"
+
+    def dagger_version = "2.40.5"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
 }

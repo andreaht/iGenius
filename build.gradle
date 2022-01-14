@@ -25,6 +25,7 @@ task clean(type: Delete) {
 ext {
     version_core = '1.7.0'
     version_constraint_layout = '2.1.1'
+    version_dagger2 = '2.40.5'
     version_kotlin_coroutines = "1.5.0"
     version_glide = "4.11.0"
     version_lifecycle_extensions = '2.2.0'
