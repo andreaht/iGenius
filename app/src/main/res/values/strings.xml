@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">github</string>
+    <string name="app_name">github projects</string>
+    <string name="welcome_to_the_github_projects_app">Welcome to the github projects app</string>
+    <string name="login">Login</string>
+    <string name="no_data">No Data</string>
+    <string name="logout">Logout</string>
 </resources>
