@@ -56,7 +56,7 @@ class AuthenticationActivity : AppCompatActivity() {
         // Create and launch sign-in intent.
         // We listen to the response of this activity with the
         // SIGN_IN_REQUEST_CODE
-        var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 firebaseLoginResult(result.resultCode, result.data)
         }
 

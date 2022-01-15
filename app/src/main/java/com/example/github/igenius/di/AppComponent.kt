@@ -30,7 +30,7 @@ import javax.inject.Singleton
  * See the `TestApplicationComponent` used in UI tests.
  */
 @Singleton
-@Component(modules = [DataModule::class])
+@Component(modules = [DataModule::class, RoomModule::class])
 interface AppComponent {
 
     // Factory to create instances of the AppComponent
