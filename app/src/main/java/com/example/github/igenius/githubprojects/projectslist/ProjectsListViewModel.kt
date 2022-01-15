@@ -3,7 +3,7 @@ package com.example.github.igenius.githubprojects.projectslist
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.github.igenius.githubprojects.data.ProjectDataSource
+import com.example.github.igenius.githubprojects.data.local.IProjectLocalDataSource
 import com.example.github.igenius.githubprojects.data.dto.ProjectDTO
 import com.example.github.igenius.githubprojects.data.dto.Result
 import com.udacity.project4.base.BaseViewModel
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class ProjectsListViewModel @Inject constructor(
     app: Application,
-    private val dataSource: ProjectDataSource
+    private val localDataSourceI: IProjectLocalDataSource
 ) : BaseViewModel(app) {
     // list that holds the reminder data to be displayed on the UI
     val projectsList = MutableLiveData<List<ProjectDataItem>>()
@@ -25,7 +25,7 @@ class ProjectsListViewModel @Inject constructor(
         showLoading.value = true
         viewModelScope.launch {
             //interacting with the dataSource has to be through a coroutine
-            val result = dataSource.getProjects()
+            val result = localDataSourceI.getProjects()
             showLoading.postValue(false)
             when (result) {
                 is Result.Success<*> -> {
@@ -35,10 +35,8 @@ class ProjectsListViewModel @Inject constructor(
                         ProjectDataItem(
                             project.title,
                             project.description,
-                            project.location,
-                            project.latitude,
-                            project.longitude,
-                            project.id
+                            project.language,
+                            project.star
                         )
                     })
                     projectsList.value = dataList

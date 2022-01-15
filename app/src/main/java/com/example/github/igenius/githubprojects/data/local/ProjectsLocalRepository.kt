@@ -1,6 +1,5 @@
 package com.example.github.igenius.githubprojects.data.local
 
-import com.example.github.igenius.githubprojects.data.ProjectDataSource
 import com.example.github.igenius.githubprojects.data.dto.ProjectDTO
 import com.example.github.igenius.githubprojects.data.dto.Result
 import kotlinx.coroutines.CoroutineDispatcher
@@ -13,7 +12,7 @@ import javax.inject.Singleton
 class ProjectsLocalRepository @Inject constructor(
     private val projectsDao: ProjectsDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : ProjectDataSource {
+) : IProjectLocalDataSource {
 
     /**
      * Get the projects list from the local db

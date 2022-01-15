@@ -1,6 +1,6 @@
 package com.example.github.igenius.di
 
-import com.example.github.igenius.githubprojects.data.ProjectDataSource
+import com.example.github.igenius.githubprojects.data.local.IProjectLocalDataSource
 import com.example.github.igenius.githubprojects.data.local.ProjectsLocalRepository
 import dagger.Binds
 import dagger.Module
@@ -12,5 +12,5 @@ abstract class DataModule {
 
     // Makes Dagger provide ProjectsLocalRepository when a ProjectDataSource type is requested
     @Binds
-    abstract fun provideProjectsLocal(data: ProjectsLocalRepository): ProjectDataSource
+    abstract fun provideProjectsLocal(data: ProjectsLocalRepository): IProjectLocalDataSource
 }
