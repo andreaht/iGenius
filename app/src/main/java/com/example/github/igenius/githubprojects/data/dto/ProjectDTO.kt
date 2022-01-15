@@ -6,22 +6,18 @@ import androidx.room.PrimaryKey
 import java.util.*
 
 /**
- * Immutable model class for a Reminder. In order to compile with Room
+ * Immutable model class for a Repository. In order to compile with Room
  *
- * @param title         title of the reminder
- * @param description   description of the reminder
- * @param location      location name of the reminder
- * @param latitude      latitude of the reminder location
- * @param longitude     longitude of the reminder location
- * @param id          id of the reminder
+ * @param title         title of the repository
+ * @param description   description of the repository
+ * @param language      main programming language of the repository
+ * @param star      stars of the repository location
  */
 
 @Entity(tableName = "projects")
 data class ProjectDTO(
     @ColumnInfo(name = "title") var title: String?,
     @ColumnInfo(name = "description") var description: String?,
-    @ColumnInfo(name = "location") var location: String?,
-    @ColumnInfo(name = "latitude") var latitude: Double?,
-    @ColumnInfo(name = "longitude") var longitude: Double?,
-    @PrimaryKey @ColumnInfo(name = "entry_id") val id: String = UUID.randomUUID().toString()
+    @ColumnInfo(name = "language") var language: String?,
+    @ColumnInfo(name = "star") var star: Boolean?
 )
