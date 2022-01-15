@@ -3,6 +3,7 @@ package com.example.github.igenius.authentication
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.github.igenius.R
@@ -27,7 +28,10 @@ class AuthenticationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // Implement the create account and sign in using FirebaseUI, use sign in using email and sign in using Google
-        binding.authButton.setOnClickListener { launchSignInFlow() }
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            firebaseLoginResult(result.resultCode, result.data)
+        }
+        binding.authButton.setOnClickListener { launchSignInFlow(resultLauncher) }
 
         val requestCode = intent.getIntExtra("requestCode", ProjectsActivity.SIGN_IN_REQUEST_CODE)
         if(requestCode == ProjectsActivity.SIGN_OUT_REQUEST_CODE) {
@@ -36,7 +40,7 @@ class AuthenticationActivity : AppCompatActivity() {
 
         //enables authomatic sign in if user is already signed in
         if(FirebaseAuth.getInstance().currentUser != null)
-            launchSignInFlow()
+            launchSignInFlow(resultLauncher)
 
     }
 
@@ -45,20 +49,13 @@ class AuthenticationActivity : AppCompatActivity() {
     /**
      * got this function from the udacity firebase course
      */
-    private fun launchSignInFlow() {
+    private fun launchSignInFlow(resultLauncher: ActivityResultLauncher<Intent>) {
         // Give users the option to sign in / register with their email or Google account.
         // If users choose to register with their email,
         // they will need to create a password as well.
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
         )
-
-        // Create and launch sign-in intent.
-        // We listen to the response of this activity with the
-        // SIGN_IN_REQUEST_CODE
-        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                firebaseLoginResult(result.resultCode, result.data)
-        }
 
         resultLauncher.launch(
             AuthUI.getInstance()
