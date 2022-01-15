@@ -72,7 +72,7 @@ class ProjectListFragment : BaseFragment() {
                 // add the logout implementation
                 val intent = Intent(context, AuthenticationActivity::class.java)
                     .putExtra("requestCode", ProjectsActivity.SIGN_OUT_REQUEST_CODE)
-                startActivityForResult(intent, ProjectsActivity .SIGN_IN_REQUEST_CODE)
+                startActivity(intent)
             }
         }
         return super.onOptionsItemSelected(item)

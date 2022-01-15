@@ -42,7 +42,7 @@ class ProjectsActivity : AppCompatActivity() {
         //launch login activity
         val intent = Intent(this, AuthenticationActivity::class.java)
             .putExtra("requestCode", SIGN_IN_REQUEST_CODE)
-        startActivityForResult(intent, SIGN_IN_REQUEST_CODE)
+        startActivity(intent)
 
     }
 

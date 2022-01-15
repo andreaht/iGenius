@@ -3,6 +3,7 @@ package com.example.github.igenius.authentication
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.github.igenius.R
 import com.example.github.igenius.databinding.ActivityAuthenticationBinding
@@ -17,11 +18,6 @@ import timber.log.Timber
  * signed in users to the RemindersActivity.
  */
 class AuthenticationActivity : AppCompatActivity() {
-
-    companion object {
-        const val TAG = "AuthenticationActivity"
-        const val SIGN_IN_REQUEST_CODE = 1001
-    }
 
     private lateinit var binding: ActivityAuthenticationBinding
 
@@ -60,32 +56,29 @@ class AuthenticationActivity : AppCompatActivity() {
         // Create and launch sign-in intent.
         // We listen to the response of this activity with the
         // SIGN_IN_REQUEST_CODE
-        startActivityForResult(
+        var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                firebaseLoginResult(result.resultCode, result.data)
+        }
+
+        resultLauncher.launch(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .setLogo(R.drawable.ic_github)
-                .build(),
-            SIGN_IN_REQUEST_CODE
+                .build()
         )
     }
 
-    /**
-     * got this function from the udacity firebase course
-     */
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == SIGN_IN_REQUEST_CODE) {
-            val response = IdpResponse.fromResultIntent(data)
-            if (resultCode == Activity.RESULT_OK) {
-                // User successfully signed in
-                Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.displayName + "!")
-            } else {
-                // Sign in failed. If response is null the user canceled the
-                // sign-in flow using the back button. Otherwise check
-                // response.getError().getErrorCode() and handle the error.
-                Timber.i("Sign in unsuccessful " + response?.error?.errorCode)
-            }
+    private fun firebaseLoginResult(resultCode: Int, data: Intent?) {
+        val response = IdpResponse.fromResultIntent(data)
+        if (resultCode == Activity.RESULT_OK) {
+            // User successfully signed in
+            Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.displayName + "!")
+        } else {
+            // Sign in failed. If response is null the user canceled the
+            // sign-in flow using the back button. Otherwise check
+            // response.getError().getErrorCode() and handle the error.
+            Timber.i("Sign in unsuccessful " + response?.error?.errorCode)
         }
         finish()
     }
