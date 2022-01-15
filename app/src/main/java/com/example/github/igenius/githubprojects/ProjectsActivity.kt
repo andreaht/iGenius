@@ -7,10 +7,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
+import com.example.github.igenius.GithubProjectsApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
 import com.example.github.igenius.databinding.ActivityProjectsBinding
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * The RemindersActivity that holds the reminders fragments
@@ -22,10 +24,15 @@ class ProjectsActivity : AppCompatActivity() {
         const val SIGN_OUT_REQUEST_CODE = 1002
     }
 
+    @Inject
+    lateinit var viewModel: ProjectsViewModel
+
     private lateinit var binding: ActivityProjectsBinding
-    private val viewModel by viewModels<ProjectsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        (application as GithubProjectsApplication).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivityProjectsBinding.inflate(layoutInflater)
         setContentView(binding.root)

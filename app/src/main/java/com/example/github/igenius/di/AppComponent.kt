@@ -18,6 +18,7 @@ package com.example.github.igenius.di
 
 import android.app.Application
 import android.content.Context
+import com.example.github.igenius.githubprojects.ProjectsActivity
 import com.example.github.igenius.githubprojects.projectslist.ProjectListFragment
 import dagger.BindsInstance
 import dagger.Component
@@ -43,5 +44,6 @@ interface AppComponent {
     // This tells Dagger that LoginActivity requests injection so the graph needs to
     // satisfy all the dependencies of the fields that LoginActivity is requesting.
     fun inject(fragment: ProjectListFragment)
+    fun inject(activity: ProjectsActivity)
 
 }
