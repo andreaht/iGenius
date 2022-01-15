@@ -54,7 +54,7 @@ class AuthenticationActivity : AppCompatActivity() {
         // If users choose to register with their email,
         // they will need to create a password as well.
         val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(), AuthUI.IdpConfig.GoogleBuilder().build()
+            AuthUI.IdpConfig.GitHubBuilder().build()
         )
 
         resultLauncher.launch(
