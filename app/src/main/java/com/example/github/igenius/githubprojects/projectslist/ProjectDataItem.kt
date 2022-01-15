@@ -11,8 +11,6 @@ import java.util.*
 data class ProjectDataItem(
     var title: String?,
     var description: String?,
-    var location: String?,
-    var latitude: Double?,
-    var longitude: Double?,
-    val id: String = UUID.randomUUID().toString()
+    var language: String?,
+    var star: Number?
 ) : Parcelable

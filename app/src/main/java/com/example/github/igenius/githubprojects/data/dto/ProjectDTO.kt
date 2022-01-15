@@ -19,5 +19,5 @@ data class ProjectDTO(
     @ColumnInfo(name = "title") var title: String?,
     @ColumnInfo(name = "description") var description: String?,
     @ColumnInfo(name = "language") var language: String?,
-    @ColumnInfo(name = "star") var star: Boolean?
+    @ColumnInfo(name = "star") var star: Number?
 )
