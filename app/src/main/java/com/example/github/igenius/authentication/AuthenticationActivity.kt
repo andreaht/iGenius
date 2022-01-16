@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.github.igenius.R
 import com.example.github.igenius.UserManager
 import com.example.github.igenius.databinding.ActivityAuthenticationBinding
-import com.example.github.igenius.githubrepositories.ProjectsActivity
+import com.example.github.igenius.githubrepositories.RepositoriesActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
@@ -39,8 +39,8 @@ class AuthenticationActivity : AppCompatActivity() {
         }
         binding.authButton.setOnClickListener { launchSignInFlow(resultLauncher) }
 
-        val requestCode = intent.getIntExtra("requestCode", ProjectsActivity.SIGN_IN_REQUEST_CODE)
-        if(requestCode == ProjectsActivity.SIGN_OUT_REQUEST_CODE) {
+        val requestCode = intent.getIntExtra("requestCode", RepositoriesActivity.SIGN_IN_REQUEST_CODE)
+        if(requestCode == RepositoriesActivity.SIGN_OUT_REQUEST_CODE) {
             AuthUI.getInstance().signOut(this)
         }
 

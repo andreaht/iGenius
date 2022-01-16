@@ -1,4 +1,4 @@
-package com.example.github.igenius.githubprojects.projectslist
+package com.example.github.igenius.githubrepositories.repositorieslist
 
 import android.content.Context
 import android.content.Intent
@@ -8,17 +8,17 @@ import com.example.github.igenius.GithubProjectsApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
 import com.example.github.igenius.databinding.FragmentProjectsBinding
-import com.example.github.igenius.githubprojects.ProjectsActivity
+import com.example.github.igenius.githubrepositories.RepositoriesActivity
 import com.udacity.project4.base.BaseFragment
-import com.udacity.project4.utils.setDisplayHomeAsUpEnabled
-import com.udacity.project4.utils.setTitle
-import com.udacity.project4.utils.setup
+import com.example.github.igenius.utils.setDisplayHomeAsUpEnabled
+import com.example.github.igenius.utils.setTitle
+import com.example.github.igenius.utils.setup
 import javax.inject.Inject
 
-class ProjectListFragment : BaseFragment() {
+class RepositoriesListFragment : BaseFragment() {
     // You want Dagger to provide an instance of ProjectsListViewModel from the graph
     @Inject
-    override lateinit var _viewModel: ProjectsListViewModel
+    override lateinit var _viewModel: RepositoriesListViewModel
 
     private lateinit var binding: FragmentProjectsBinding
 
@@ -41,7 +41,7 @@ class ProjectListFragment : BaseFragment() {
         setDisplayHomeAsUpEnabled(false)
         setTitle(getString(R.string.app_name))
 
-        binding.refreshLayout.setOnRefreshListener { _viewModel.loadReminders() }
+        binding.refreshLayout.setOnRefreshListener { _viewModel.loadLocalRepos() }
 
         return binding.root
     }
@@ -55,11 +55,11 @@ class ProjectListFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         //load the reminders list on the ui
-        _viewModel.loadReminders()
+        _viewModel.loadLocalRepos()
     }
 
     private fun setupRecyclerView() {
-        val adapter = ProjectsListAdapter {
+        val adapter = RepositoriesListAdapter {
         }
 
 //        setup the recycler view using the extension function
@@ -71,7 +71,7 @@ class ProjectListFragment : BaseFragment() {
             R.id.logout -> {
                 // add the logout implementation
                 val intent = Intent(context, AuthenticationActivity::class.java)
-                    .putExtra("requestCode", ProjectsActivity.SIGN_OUT_REQUEST_CODE)
+                    .putExtra("requestCode", RepositoriesActivity.SIGN_OUT_REQUEST_CODE)
                 startActivity(intent)
             }
         }

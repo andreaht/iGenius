@@ -1,9 +1,8 @@
-package com.example.github.igenius.githubprojects
+package com.example.github.igenius.githubrepositories
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -17,7 +16,7 @@ import javax.inject.Inject
 /**
  * The RemindersActivity that holds the reminders fragments
  */
-class ProjectsActivity : AppCompatActivity() {
+class RepositoriesActivity : AppCompatActivity() {
 
     companion object {
         const val SIGN_IN_REQUEST_CODE = 1001
@@ -25,7 +24,7 @@ class ProjectsActivity : AppCompatActivity() {
     }
 
     @Inject
-    lateinit var viewModel: ProjectsViewModel
+    lateinit var viewModel: RepositoriesViewModel
 
     private lateinit var binding: ActivityProjectsBinding
 
@@ -66,7 +65,7 @@ class ProjectsActivity : AppCompatActivity() {
 
         viewModel.authenticationState.observe(this, Observer { authenticationState ->
             when (authenticationState) {
-                ProjectsViewModel.AuthenticationState.AUTHENTICATED -> {
+                RepositoriesViewModel.AuthenticationState.AUTHENTICATED -> {
                     Timber.i("Sign in successful")
                 }
                 else -> {

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.github.igenius.githubprojects.projectslist.ProjectsListViewModel" />
+            type="com.example.github.igenius.githubrepositories.repositorieslist.RepositoriesListViewModel" />
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

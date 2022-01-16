@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.github.igenius.githubprojects.projectslist.ProjectDataItem" />
+            type="com.example.github.igenius.githubrepositories.repositorieslist.RepositoryDataItem" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -46,17 +46,17 @@
                 tools:text="Description" />
 
             <TextView
-                android:id="@+id/location"
+                android:id="@+id/language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@{item.location}"
+                android:text="@{item.language}"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_small"
                 app:layout_constraintBottom_toBottomOf="@+id/description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/title"
-                tools:text="Location" />
+                tools:text="Language" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -1,8 +1,9 @@
-package com.example.github.igenius.githubprojects.data.dto
+package com.example.github.igenius.githubrepositories.data.dto
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import java.util.*
 
 /**
@@ -11,13 +12,13 @@ import java.util.*
  * @param title         title of the repository
  * @param description   description of the repository
  * @param language      main programming language of the repository
- * @param star      stars of the repository location
+ * @param star      stars of the repository
  */
 
-@Entity(tableName = "projects")
-data class ProjectDTO(
-    @ColumnInfo(name = "title") var title: String?,
+@Entity(tableName = "repository")
+data class RepositoryDTO (
+    @PrimaryKey @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "description") var description: String?,
     @ColumnInfo(name = "language") var language: String?,
-    @ColumnInfo(name = "star") var star: Number?
+    @ColumnInfo(name = "star") @Json(name = "watchers_count") var star: Int?
 )

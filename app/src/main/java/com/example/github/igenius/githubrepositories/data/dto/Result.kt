@@ -1,4 +1,4 @@
-package com.example.github.igenius.githubprojects.data.dto
+package com.example.github.igenius.githubrepositories.data.dto
 
 
 /**

@@ -1,7 +1,8 @@
-package com.example.github.igenius.githubprojects.data.local
+package com.example.github.igenius.githubrepositories.data.local
 
 import android.content.Context
 import androidx.room.Room
+import com.example.github.igenius.githubrepository.data.local.RepositoriesDao
 
 
 /**
@@ -12,11 +13,11 @@ object LocalDB {
     /**
      * static method that creates a project class and returns the DAO of the project
      */
-    fun createProjectsDao(context: Context): ProjectsDao {
+    fun createRepositoriesDao(context: Context): RepositoriesDao {
         return Room.databaseBuilder(
             context.applicationContext,
-            ProjectsDatabase::class.java, "githubprojects.db"
-        ).build().projectDao()
+            RepositoriesDatabase::class.java, "githubrepositories.db"
+        ).build().repositoryDao()
     }
 
 }

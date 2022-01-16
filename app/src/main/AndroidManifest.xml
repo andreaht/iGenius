@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".authentication.AuthenticationActivity">
         </activity>
-        <activity android:name=".githubrepositories.ProjectsActivity"
+        <activity android:name=".githubrepositories.RepositoriesActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

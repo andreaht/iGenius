@@ -14,7 +14,7 @@
  *  limitations under the License.
  */
 
-package com.udacity.project4.utils
+package com.example.github.igenius.utils
 
 import android.util.Log
 import androidx.annotation.MainThread

@@ -1,11 +1,11 @@
-package com.example.github.igenius.githubprojects
+package com.example.github.igenius.githubrepositories
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.example.github.igenius.authentication.FirebaseUserLiveData
 import javax.inject.Inject
 
-class ProjectsViewModel @Inject constructor() : ViewModel() {
+class RepositoriesViewModel @Inject constructor() : ViewModel() {
 
     enum class AuthenticationState {
         AUTHENTICATED, UNAUTHENTICATED, INVALID_AUTHENTICATION

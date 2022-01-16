@@ -1,8 +1,8 @@
 package com.example.github.igenius.di
 
 import android.app.Application
-import com.example.github.igenius.githubprojects.data.local.LocalDB
-import com.example.github.igenius.githubprojects.data.local.ProjectsDao
+import com.example.github.igenius.githubrepositories.data.local.LocalDB
+import com.example.github.igenius.githubrepository.data.local.RepositoriesDao
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -17,8 +17,8 @@ class RoomModule {
 
     @Singleton
     @Provides
-    fun provideLoginDao(app: Application): ProjectsDao {
-        return LocalDB.createProjectsDao(app)
+    fun provideLoginDao(app: Application): RepositoriesDao {
+        return LocalDB.createRepositoriesDao(app)
     }
 
     @Singleton

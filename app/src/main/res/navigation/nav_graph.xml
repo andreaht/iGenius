@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/projectListFragment"
-        android:name="com.example.github.igenius.githubprojects.projectslist.ProjectListFragment"
+        android:name="com.example.github.igenius.githubrepositories.repositorieslist.RepositoriesListFragment"
         android:label="ProjectListFragment" />
 </navigation>

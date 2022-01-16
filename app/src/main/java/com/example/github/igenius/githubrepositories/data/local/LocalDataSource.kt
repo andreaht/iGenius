@@ -1,7 +1,8 @@
-package com.example.github.igenius.githubprojects.data.local
+package com.example.github.igenius.githubrepositories.data.local
 
-import com.example.github.igenius.githubprojects.data.dto.ProjectDTO
-import com.example.github.igenius.githubprojects.data.dto.Result
+import com.example.github.igenius.githubrepositories.data.dto.RepositoryDTO
+import com.example.github.igenius.githubrepositories.data.dto.Result
+import com.example.github.igenius.githubrepository.data.local.RepositoriesDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,18 +10,18 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class ProjectsLocalRepository @Inject constructor(
-    private val projectsDao: ProjectsDao,
+class LocalDataSource @Inject constructor(
+    private val repositoriesDao: RepositoriesDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : IProjectLocalDataSource {
+) : ILocalDataSource {
 
     /**
      * Get the projects list from the local db
      * @return Result the holds a Success with all the projects or an Error object with the error message
      */
-    override suspend fun getProjects(): Result<List<ProjectDTO>> = withContext(ioDispatcher) {
+    override suspend fun getProjects(): Result<List<RepositoryDTO>> = withContext(ioDispatcher) {
         return@withContext try {
-            Result.Success(projectsDao.getProjects())
+            Result.Success(repositoriesDao.getRepositories())
         } catch (ex: Exception) {
             Result.Error(ex.localizedMessage)
         }
@@ -28,11 +29,11 @@ class ProjectsLocalRepository @Inject constructor(
 
         /**
          * Insert a project in the db.
-         * @param project the project to be inserted
+         * @param repository the project to be inserted
          */
-    override suspend fun saveProject(project: ProjectDTO) =
+    override suspend fun saveProject(repository: RepositoryDTO) =
             withContext(ioDispatcher) {
-                projectsDao.saveProject(project)
+                repositoriesDao.saveProject(repository)
             }
 
     /**
@@ -40,9 +41,9 @@ class ProjectsLocalRepository @Inject constructor(
      * @param id to be used to get the project
      * @return Result the holds a Success object with the Project or an Error object with the error message
      */
-    override suspend fun getProject(id: String): Result<ProjectDTO> = withContext(ioDispatcher) {
+    override suspend fun getProject(id: String): Result<RepositoryDTO> = withContext(ioDispatcher) {
         try {
-            val project = projectsDao.getProjectById(id)
+            val project = repositoriesDao.getProjectById(id)
             if (project != null) {
                 return@withContext Result.Success(project)
             } else {
@@ -58,7 +59,7 @@ class ProjectsLocalRepository @Inject constructor(
      */
     override suspend fun deleteAllProjects() {
         withContext(ioDispatcher) {
-            projectsDao.deleteAllProjects()
+            repositoriesDao.deleteAllProjects()
         }
     }
 }

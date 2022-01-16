@@ -1,7 +1,9 @@
 package com.example.github.igenius.di
 
-import com.example.github.igenius.githubprojects.data.local.IProjectLocalDataSource
-import com.example.github.igenius.githubprojects.data.local.ProjectsLocalRepository
+import com.example.github.igenius.githubrepositories.data.local.ILocalDataSource
+import com.example.github.igenius.githubrepositories.data.local.LocalDataSource
+import com.example.github.igenius.githubrepositories.data.remote.IRemoteDataSource
+import com.example.github.igenius.githubrepositories.data.remote.RemoteDataSource
 import dagger.Binds
 import dagger.Module
 
