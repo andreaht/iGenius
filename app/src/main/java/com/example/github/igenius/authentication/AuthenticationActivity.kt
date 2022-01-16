@@ -7,18 +7,24 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.github.igenius.R
+import com.example.github.igenius.UserManager
 import com.example.github.igenius.databinding.ActivityAuthenticationBinding
-import com.example.github.igenius.githubprojects.ProjectsActivity
+import com.example.github.igenius.githubrepositories.ProjectsActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * This class should be the starting point of the app, It asks the users to sign in / register, and redirects the
  * signed in users to the RemindersActivity.
  */
 class AuthenticationActivity : AppCompatActivity() {
+
+    // @Inject annotated fields will be provided by Dagger
+    @Inject
+    lateinit var userManager: UserManager
 
     private lateinit var binding: ActivityAuthenticationBinding
 
@@ -70,6 +76,7 @@ class AuthenticationActivity : AppCompatActivity() {
         val response = IdpResponse.fromResultIntent(data)
         if (resultCode == Activity.RESULT_OK) {
             // User successfully signed in
+            userManager.username = FirebaseAuth.getInstance().currentUser?.displayName.toString()
             Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.displayName + "!")
         } else {
             // Sign in failed. If response is null the user canceled the

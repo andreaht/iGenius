@@ -11,7 +11,7 @@ import timber.log.Timber
 interface ApplicationComponent {  }
 
 // appComponent lives in the Application class to share its lifecycle
-class GithubProjectsApplication : Application() {
+open class GithubProjectsApplication : Application() {
 
     // Instance of the AppComponent that will be used by all the Activities in the project
     val appComponent: AppComponent by lazy {
@@ -24,5 +24,9 @@ class GithubProjectsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
+    }
+
+    open val userManager by lazy {
+        UserManager()
     }
 }
