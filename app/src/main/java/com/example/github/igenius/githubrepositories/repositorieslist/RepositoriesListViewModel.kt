@@ -1,39 +1,39 @@
-package com.example.github.igenius.githubprojects.projectslist
+package com.example.github.igenius.githubrepositories.repositorieslist
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.github.igenius.githubprojects.data.local.IProjectLocalDataSource
-import com.example.github.igenius.githubprojects.data.dto.ProjectDTO
-import com.example.github.igenius.githubprojects.data.dto.Result
+import com.example.github.igenius.githubrepositories.data.GithubRepository
+import com.example.github.igenius.githubrepositories.data.dto.RepositoryDTO
+import com.example.github.igenius.githubrepositories.data.dto.Result
 import com.udacity.project4.base.BaseViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ProjectsListViewModel @Inject constructor(
+class RepositoriesListViewModel @Inject constructor(
     app: Application,
-    private val localDataSourceI: IProjectLocalDataSource
+    private val repository: GithubRepository
 ) : BaseViewModel(app) {
     // list that holds the reminder data to be displayed on the UI
-    val projectsList = MutableLiveData<List<ProjectDataItem>>()
+    val projectsList = MutableLiveData<List<RepositoryDataItem>>()
 
     /**
      * Get all the reminders from the DataSource and add them to the remindersList to be shown on the UI,
      * or show error if any
      */
-    fun loadReminders() {
+    fun loadLocalRepos() {
         showLoading.value = true
         viewModelScope.launch {
             //interacting with the dataSource has to be through a coroutine
-            val result = localDataSourceI.getProjects()
+            val result = repository.getProjects()
             showLoading.postValue(false)
             when (result) {
                 is Result.Success<*> -> {
-                    val dataList = ArrayList<ProjectDataItem>()
-                    dataList.addAll((result.data as List<ProjectDTO>).map { project ->
+                    val dataList = ArrayList<RepositoryDataItem>()
+                    dataList.addAll((result.data as List<RepositoryDTO>).map { project ->
                         //map the project data from the DB to the be ready to be displayed on the UI
-                        ProjectDataItem(
-                            project.title,
+                        RepositoryDataItem(
+                            project.name,
                             project.description,
                             project.language,
                             project.star

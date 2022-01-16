@@ -14,5 +14,8 @@ abstract class DataModule {
 
     // Makes Dagger provide ProjectsLocalRepository when a ProjectDataSource type is requested
     @Binds
-    abstract fun provideProjectsLocal(data: ProjectsLocalRepository): IProjectLocalDataSource
+    abstract fun provideProjectsLocal(data: LocalDataSource): ILocalDataSource
+
+    @Binds
+    abstract fun provideProjectsRemote(data: RemoteDataSource): IRemoteDataSource
 }
