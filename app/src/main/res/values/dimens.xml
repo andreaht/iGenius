@@ -6,15 +6,19 @@
     <dimen name="text_size_normal">16sp</dimen>
     <dimen name="text_size_medium">18sp</dimen>
     <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_title">28sp</dimen>
     <dimen name="padding_normal">15dp</dimen>
     <dimen name="padding_small">5dp</dimen>
     <dimen name="padding_medium">10dp</dimen>
     <dimen name="padding_large">20dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
 
-    <dimen name="margin_wide">16dp</dimen>
+    <dimen name="margin_wide">24dp</dimen>
     <dimen name="margin_half">8dp</dimen>
-    <dimen name="icon_size">64dp</dimen>
-    <dimen name="icon_half_size">32dp</dimen>
+    <dimen name="icon_height">110dp</dimen>
+    <dimen name="icon_width">55dp</dimen>
+    <dimen name="icon_big_height">180dp</dimen>
+    <dimen name="icon_big_width">90dp</dimen>
+    <dimen name="icon_half_size">64dp</dimen>
 
 </resources>

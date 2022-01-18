@@ -7,12 +7,12 @@ import android.view.*
 import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
-import com.example.github.igenius.databinding.FragmentProjectsBinding
+import com.example.github.igenius.databinding.FragmentRepositoriesBinding
 import com.example.github.igenius.githubrepositories.RepositoriesActivity
-import com.udacity.project4.base.BaseFragment
 import com.example.github.igenius.utils.setDisplayHomeAsUpEnabled
 import com.example.github.igenius.utils.setTitle
 import com.example.github.igenius.utils.setup
+import com.udacity.project4.base.BaseFragment
 import javax.inject.Inject
 
 class RepositoriesListFragment : BaseFragment() {
@@ -20,7 +20,7 @@ class RepositoriesListFragment : BaseFragment() {
     @Inject
     override lateinit var _viewModel: RepositoriesListViewModel
 
-    private lateinit var binding: FragmentProjectsBinding
+    private lateinit var binding: FragmentRepositoriesBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -32,7 +32,7 @@ class RepositoriesListFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProjectsBinding.inflate(
+        binding = FragmentRepositoriesBinding.inflate(
             inflater, container, false
         )
         binding.viewModel = _viewModel
@@ -62,8 +62,9 @@ class RepositoriesListFragment : BaseFragment() {
         val adapter = RepositoriesListAdapter {
         }
 
-//        setup the recycler view using the extension function
-        binding.reminderssRecyclerView.setup(adapter)
+        //setup the recycler view using the extension function
+        binding.recyclerView.setup(adapter)
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

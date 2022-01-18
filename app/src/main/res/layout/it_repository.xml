@@ -11,6 +11,7 @@
     </data>
 
     <androidx.cardview.widget.CardView
+        style="@style/CustomCardview"
         android:id="@+id/reminderCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,39 +25,55 @@
 
             <TextView
                 android:id="@+id/title"
+                style="@style/textBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/padding_small"
-                android:layout_marginLeft="@dimen/padding_small"
                 android:text="@{item.title}"
-                android:textColor="@color/black_text_color"
-                android:textSize="@dimen/text_size_normal"
+                android:fontFamily="@font/roboto"
+                android:maxLines="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Title" />
 
             <TextView
                 android:id="@+id/description"
+                style="@style/textBoxContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/roboto"
+                android:maxLines="3"
                 android:text="@{item.description}"
-                android:textSize="@dimen/text_size_small"
                 app:layout_constraintStart_toStartOf="@id/title"
                 app:layout_constraintTop_toBottomOf="@id/title"
                 tools:text="Description" />
 
             <TextView
                 android:id="@+id/language"
+                style="@style/textBoxContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.language}"
+                android:textColor="@color/accentColor"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Language" />
+
+
+            <TextView
+                android:id="@+id/stars"
+                style="@style/textBoxContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@{item.language}"
-                android:textColor="@color/colorAccent"
-                android:textSize="@dimen/text_size_small"
-                app:layout_constraintBottom_toBottomOf="@+id/description"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/title"
-                tools:text="Language" />
+                android:text="@{@string/stars + item.star}"
+                android:textColor="@color/accentColor"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Stars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
