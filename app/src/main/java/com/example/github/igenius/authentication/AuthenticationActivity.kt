@@ -82,7 +82,8 @@ class AuthenticationActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK) {
             // User successfully signed in
             Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.uid + "!")
-            userManager.username = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+            userManager.displayName = FirebaseAuth.getInstance().currentUser?.displayName.toString()
+            userManager.uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
             userManager.token = response?.idpToken ?: ""
         } else {
             // Sign in failed. If response is null the user canceled the

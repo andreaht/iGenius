@@ -54,6 +54,36 @@ class RepositoriesListViewModel @Inject constructor(
      * Inform the user that there's not any data if the remindersList is empty
      */
     private fun invalidateShowNoData() {
-        showNoData.value = projectsList.value == null || projectsList.value!!.isEmpty()
+        showNoData.value = reposList.value == null || reposList.value!!.isEmpty()
+    }
+
+    init {
+        showNoData.observeForever { noData ->
+            if(noData) {
+                loadRemoteRepos()
+            }
+        }
+    }
+
+    private fun loadRemoteRepos() {
+
+        showLoading.value = true
+        viewModelScope.launch {
+            //interacting with the dataSource has to be through a coroutine
+            val result = repository.getRemoteRepos()
+            showLoading.postValue(false)
+            when (result) {
+                is Result.Success<*> -> {
+                    for(repo in (result.data as List<RepositoryDTO>)){
+                        repository.saveRepo(repo)
+                    }
+                }
+                is Result.Error ->
+                    showSnackBar.value = result.message
+            }
+
+            if(result is Result.Success && (result.data as List<*>).isNotEmpty())
+                loadLocalRepos()
+        }
     }
 }
