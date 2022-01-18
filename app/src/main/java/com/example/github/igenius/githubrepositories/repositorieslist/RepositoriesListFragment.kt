@@ -49,22 +49,12 @@ class RepositoriesListFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
-        setupRecyclerView()
     }
 
     override fun onResume() {
         super.onResume()
         //load the reminders list on the ui
         _viewModel.loadLocalRepos()
-    }
-
-    private fun setupRecyclerView() {
-        val adapter = RepositoriesListAdapter {
-        }
-
-        //setup the recycler view using the extension function
-        binding.recyclerView.setup(adapter)
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

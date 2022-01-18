@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="com.example.github.igenius.githubrepositories.repositorieslist.RepositoryDataItem" />
+
+        <variable
+            name="clickListener"
+            type="com.example.github.igenius.githubrepositories.repositorieslist.RepoListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -72,7 +76,7 @@
                 android:textColor="@color/accentColor"
                 app:layout_constraintTop_toBottomOf="@id/description"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/title"
                 tools:text="Stars" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
