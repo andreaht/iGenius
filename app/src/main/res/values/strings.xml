@@ -4,6 +4,6 @@
     <string name="login">Login</string>
     <string name="no_data">No Data</string>
     <string name="logout">Logout</string>
-    <string name="stars">stars: </string>
+    <string name="stars">stars:&#160;</string>
     <string name="star">star</string>
 </resources>

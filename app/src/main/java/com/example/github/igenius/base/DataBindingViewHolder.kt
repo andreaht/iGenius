@@ -1,4 +1,4 @@
-package com.udacity.project4.base
+package com.example.github.igenius.base
 
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR

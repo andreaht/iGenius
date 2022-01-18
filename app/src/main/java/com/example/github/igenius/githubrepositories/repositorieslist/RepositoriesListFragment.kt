@@ -7,12 +7,15 @@ import android.view.*
 import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
+import com.example.github.igenius.databinding.BottomSheetDialogLayoutBinding
 import com.example.github.igenius.databinding.FragmentRepositoriesBinding
 import com.example.github.igenius.githubrepositories.RepositoriesActivity
 import com.example.github.igenius.utils.setDisplayHomeAsUpEnabled
 import com.example.github.igenius.utils.setTitle
 import com.example.github.igenius.utils.setup
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.udacity.project4.base.BaseFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 class RepositoriesListFragment : BaseFragment() {
@@ -42,6 +45,27 @@ class RepositoriesListFragment : BaseFragment() {
         setTitle(getString(R.string.app_name))
 
         binding.refreshLayout.setOnRefreshListener { _viewModel.loadLocalRepos() }
+
+        //link beer to bottom sheet dialog
+        _viewModel.showRepositoryInfo.observe(viewLifecycleOwner, { repositoryDataItem ->
+            repositoryDataItem?.let {
+                //binding setup
+                val myDrawerView = layoutInflater.inflate(R.layout.bottom_sheet_dialog_layout, null)
+                val bsdBinding = BottomSheetDialogLayoutBinding.inflate(layoutInflater, myDrawerView as ViewGroup, false)
+                bsdBinding.repositoryDataItem = repositoryDataItem
+
+                //show the view
+                val bottomSheetDialog = BottomSheetDialog(requireContext());
+                bottomSheetDialog.setContentView(bsdBinding.content)
+                bottomSheetDialog.show()
+            }
+        })
+
+        //Define and assign recyclerview beer adapter
+        binding.recyclerView.adapter = RepositoriesListAdapter(RepoListener {
+            Timber.i("repo clicked: %s", it.title)
+            _viewModel.onRepositoryClicked(it)
+        })
 
         return binding.root
     }

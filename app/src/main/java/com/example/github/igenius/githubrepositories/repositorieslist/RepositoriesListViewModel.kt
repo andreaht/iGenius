@@ -86,4 +86,13 @@ class RepositoriesListViewModel @Inject constructor(
                 loadLocalRepos()
         }
     }
+
+    //functions to selected beer info
+    private val _showRepositoryInfo = MutableLiveData<RepositoryDataItem>()
+    val showRepositoryInfo
+        get() = _showRepositoryInfo
+
+    fun onRepositoryClicked(repository: RepositoryDataItem) {
+        _showRepositoryInfo.value = repository
+    }
 }
