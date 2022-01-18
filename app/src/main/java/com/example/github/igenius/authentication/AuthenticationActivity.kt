@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.UserManager
 import com.example.github.igenius.databinding.ActivityAuthenticationBinding
@@ -22,13 +23,17 @@ import javax.inject.Inject
  */
 class AuthenticationActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityAuthenticationBinding
+
     // @Inject annotated fields will be provided by Dagger
     @Inject
     lateinit var userManager: UserManager
 
-    private lateinit var binding: ActivityAuthenticationBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        // Ask Dagger to inject our dependencies
+        (application as GithubApplication).appComponent.inject(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivityAuthenticationBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -76,8 +81,9 @@ class AuthenticationActivity : AppCompatActivity() {
         val response = IdpResponse.fromResultIntent(data)
         if (resultCode == Activity.RESULT_OK) {
             // User successfully signed in
+            Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.uid + "!")
             userManager.username = FirebaseAuth.getInstance().currentUser?.displayName.toString()
-            Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.displayName + "!")
+            userManager.token = response?.idpToken ?: ""
         } else {
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
