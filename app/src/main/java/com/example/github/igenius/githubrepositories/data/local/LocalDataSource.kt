@@ -2,7 +2,6 @@ package com.example.github.igenius.githubrepositories.data.local
 
 import com.example.github.igenius.githubrepositories.data.dto.RepositoryDTO
 import com.example.github.igenius.githubrepositories.data.dto.Result
-import com.example.github.igenius.githubrepository.data.local.RepositoriesDao
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -16,10 +15,10 @@ class LocalDataSource @Inject constructor(
 ) : ILocalDataSource {
 
     /**
-     * Get the projects list from the local db
-     * @return Result the holds a Success with all the projects or an Error object with the error message
+     * Get the repositories list from the local db
+     * @return Result the holds a Success with all the repositories or an Error object with the error message
      */
-    override suspend fun getProjects(): Result<List<RepositoryDTO>> = withContext(ioDispatcher) {
+    override suspend fun getRepos(): Result<List<RepositoryDTO>> = withContext(ioDispatcher) {
         return@withContext try {
             Result.Success(repositoriesDao.getRepositories())
         } catch (ex: Exception) {
@@ -27,27 +26,27 @@ class LocalDataSource @Inject constructor(
         }
     }
 
-        /**
-         * Insert a project in the db.
-         * @param repository the project to be inserted
-         */
-    override suspend fun saveProject(repository: RepositoryDTO) =
-            withContext(ioDispatcher) {
-                repositoriesDao.saveProject(repository)
-            }
+    /**
+     * Insert a repository in the db.
+     * @param repository the repository to be inserted
+     */
+    override suspend fun saveRepo(repository: RepositoryDTO) =
+        withContext(ioDispatcher) {
+            repositoriesDao.saveRepository(repository)
+        }
 
     /**
-     * Get a project by its id
-     * @param id to be used to get the project
-     * @return Result the holds a Success object with the Project or an Error object with the error message
+     * Get a repository by its name
+     * @param name to be used to get the repository
+     * @return Result the holds a Success object with the Repository or an Error object with the error message
      */
-    override suspend fun getProject(id: String): Result<RepositoryDTO> = withContext(ioDispatcher) {
+    override suspend fun getRepo(name: String): Result<RepositoryDTO> = withContext(ioDispatcher) {
         try {
-            val project = repositoriesDao.getProjectById(id)
-            if (project != null) {
-                return@withContext Result.Success(project)
+            val repository = repositoriesDao.getRepositoryById(name)
+            if (repository != null) {
+                return@withContext Result.Success(repository)
             } else {
-                return@withContext Result.Error("Project not found!")
+                return@withContext Result.Error("Repository not found!")
             }
         } catch (e: Exception) {
             return@withContext Result.Error(e.localizedMessage)
@@ -55,11 +54,11 @@ class LocalDataSource @Inject constructor(
     }
 
     /**
-     * Deletes all the projects in the db
+     * Deletes all the repositories in the db
      */
-    override suspend fun deleteAllProjects() {
+    override suspend fun deleteAllRepos() {
         withContext(ioDispatcher) {
-            repositoriesDao.deleteAllProjects()
+            repositoriesDao.deleteAllRepositories()
         }
     }
 }

@@ -2,7 +2,6 @@ package com.example.github.igenius.githubrepositories.data.local
 
 import android.content.Context
 import androidx.room.Room
-import com.example.github.igenius.githubrepository.data.local.RepositoriesDao
 
 
 /**

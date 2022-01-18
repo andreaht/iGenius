@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class RemoteDataSource @Inject constructor(private val userManager: UserManager) : IRemoteDataSource {
 
-    override suspend fun getProjects(): Result<List<RepositoryDTO>> {
+    override suspend fun getRepos(): Result<List<RepositoryDTO>> {
         return try {
             val repos = ArrayList<RepositoryDTO>()
             repos.addAll(

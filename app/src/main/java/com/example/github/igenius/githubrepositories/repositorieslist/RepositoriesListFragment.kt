@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import com.example.github.igenius.GithubProjectsApplication
+import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
 import com.example.github.igenius.databinding.FragmentProjectsBinding
@@ -25,7 +25,7 @@ class RepositoriesListFragment : BaseFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        (requireActivity().application as GithubProjectsApplication).appComponent.inject(this)
+        (requireActivity().application as GithubApplication).appComponent.inject(this)
     }
 
     override fun onCreateView(

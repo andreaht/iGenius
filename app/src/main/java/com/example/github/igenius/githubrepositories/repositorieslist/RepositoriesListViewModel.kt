@@ -15,7 +15,7 @@ class RepositoriesListViewModel @Inject constructor(
     private val repository: GithubRepository
 ) : BaseViewModel(app) {
     // list that holds the reminder data to be displayed on the UI
-    val projectsList = MutableLiveData<List<RepositoryDataItem>>()
+    val reposList = MutableLiveData<List<RepositoryDataItem>>()
 
     /**
      * Get all the reminders from the DataSource and add them to the remindersList to be shown on the UI,
@@ -25,7 +25,7 @@ class RepositoriesListViewModel @Inject constructor(
         showLoading.value = true
         viewModelScope.launch {
             //interacting with the dataSource has to be through a coroutine
-            val result = repository.getProjects()
+            val result = repository.getRepos()
             showLoading.postValue(false)
             when (result) {
                 is Result.Success<*> -> {
@@ -39,7 +39,7 @@ class RepositoriesListViewModel @Inject constructor(
                             project.star
                         )
                     })
-                    projectsList.value = dataList
+                    reposList.value = dataList
                 }
                 is Result.Error ->
                     showSnackBar.value = result.message

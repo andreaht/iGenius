@@ -5,5 +5,5 @@ import com.example.github.igenius.githubrepositories.data.dto.Result
 
 interface IRemoteDataSource {
 
-    suspend fun getProjects(): Result<List<RepositoryDTO>>
+    suspend fun getRepos(): Result<List<RepositoryDTO>>
 }

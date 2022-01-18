@@ -2,7 +2,7 @@ package com.example.github.igenius.di
 
 import android.app.Application
 import com.example.github.igenius.githubrepositories.data.local.LocalDB
-import com.example.github.igenius.githubrepository.data.local.RepositoriesDao
+import com.example.github.igenius.githubrepositories.data.local.RepositoriesDao
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher

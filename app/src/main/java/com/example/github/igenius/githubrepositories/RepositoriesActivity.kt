@@ -6,7 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import com.example.github.igenius.GithubProjectsApplication
+import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
 import com.example.github.igenius.databinding.ActivityProjectsBinding
@@ -30,7 +30,7 @@ class RepositoriesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        (application as GithubProjectsApplication).appComponent.inject(this)
+        (application as GithubApplication).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
         binding = ActivityProjectsBinding.inflate(layoutInflater)

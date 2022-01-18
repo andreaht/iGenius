@@ -1,4 +1,4 @@
-package com.example.github.igenius.githubrepository.data.local
+package com.example.github.igenius.githubrepositories.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -18,24 +18,24 @@ interface RepositoriesDao {
     suspend fun getRepositories(): List<RepositoryDTO>
 
     /**
-     * @param projectId the id of the project
-     * @return the project object with the projectId
+     * @param repoName the name of the repository
+     * @return the repository object with the repositoryId
      */
     @Query("SELECT * FROM repository where name = :repoName")
-    suspend fun getProjectById(repoName: String): RepositoryDTO?
+    suspend fun getRepositoryById(repoName: String): RepositoryDTO?
 
     /**
-     * Insert a project in the database. If the project already exists, replace it.
+     * Insert a repository in the database. If the repository already exists, replace it.
      *
-     * @param repository the project to be inserted.
+     * @param repository the repository to be inserted.
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveProject(repository: RepositoryDTO)
+    suspend fun saveRepository(repository: RepositoryDTO)
 
     /**
      * Delete all repository.
      */
     @Query("DELETE FROM repository")
-    suspend fun deleteAllProjects()
+    suspend fun deleteAllRepositories()
 
 }
