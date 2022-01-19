@@ -13,7 +13,7 @@
 
     <!-- Button Styles -->
     <style name="Button" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
         <item name="android:textColor">@color/colorOnPrimary</item>
     </style>
 
