@@ -44,11 +44,6 @@ class AuthenticationActivity : AppCompatActivity() {
         }
         binding.authButton.setOnClickListener { launchSignInFlow(resultLauncher) }
 
-        val requestCode = intent.getIntExtra("requestCode", RepositoriesActivity.SIGN_IN_REQUEST_CODE)
-        if(requestCode == RepositoriesActivity.SIGN_OUT_REQUEST_CODE) {
-            AuthUI.getInstance().signOut(this)
-        }
-
         //enables authomatic sign in if user is already signed in
         if(FirebaseAuth.getInstance().currentUser != null)
             launchSignInFlow(resultLauncher)
@@ -87,16 +82,16 @@ class AuthenticationActivity : AppCompatActivity() {
             userManager.displayName = FirebaseAuth.getInstance().currentUser?.displayName.toString()
             userManager.uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
             userManager.token = response?.idpToken ?: ""
+
+            //launch repository activity
+            val intent = Intent(this, RepositoriesActivity::class.java)
+            startActivity(intent)
+
         } else {
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
             // response.getError().getErrorCode() and handle the error.
             Timber.i("Sign in unsuccessful " + response?.error?.errorCode)
         }
-        finish()
-    }
-
-   override fun onBackPressed() {
-        finishAffinity()
     }
 }

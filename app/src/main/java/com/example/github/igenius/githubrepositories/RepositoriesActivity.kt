@@ -17,12 +17,6 @@ import javax.inject.Inject
  * The RepositoriesActivity that holds the repository fragments
  */
 class RepositoriesActivity : AppCompatActivity() {
-
-    companion object {
-        const val SIGN_IN_REQUEST_CODE = 1001
-        const val SIGN_OUT_REQUEST_CODE = 1002
-    }
-
     @Inject
     lateinit var viewModel: RepositoriesViewModel
 
@@ -38,22 +32,6 @@ class RepositoriesActivity : AppCompatActivity() {
 
         observeAuthenticationState()
 
-        //launch login activity
-        val intent = Intent(this, AuthenticationActivity::class.java)
-            .putExtra("requestCode", SIGN_IN_REQUEST_CODE)
-        startActivity(intent)
-
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                val navHostFragment = findNavController(R.id.nav_host_fragment)
-                navHostFragment.popBackStack()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     /**
