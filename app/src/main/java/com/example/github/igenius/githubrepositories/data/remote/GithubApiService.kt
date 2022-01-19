@@ -25,8 +25,15 @@ private val retrofit = Retrofit.Builder()
 
 interface GithubApiService {
 
+
+    @GET("/users/{user}/repos")
+    suspend fun getRepositoriesForUser(
+        @Header("Authorization") token: String,
+        @Path("user") user: String
+    ): List<RepositoryDTO>
+
     @GET("search/repositories")
-    suspend fun getReposForUser(
+    suspend fun getPrivateRepositoriesForUser(
         @Header("Authorization") token: String,
         @Query("q") user: String
     ): NetworkRepository

@@ -16,7 +16,12 @@ class RemoteDataSource @Inject constructor(private val userManager: UserManager)
             if(userManager.isUserInitialized()) {
                 val repos = ArrayList<RepositoryDTO>()
                 repos.addAll(
-                    GithubApi.retrofitService.getReposForUser(
+                    GithubApi.retrofitService.getRepositoriesForUser(
+                        "Token " + userManager.token,
+                        userManager.user.login)
+                )
+                repos.addAll(
+                    GithubApi.retrofitService.getPrivateRepositoriesForUser(
                         "Token " + userManager.token,
                         "user:" + userManager.user.login).asRepositoryDTO()
                 )
