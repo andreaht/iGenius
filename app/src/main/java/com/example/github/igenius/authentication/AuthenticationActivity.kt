@@ -64,8 +64,9 @@ class AuthenticationActivity : AppCompatActivity() {
         // Give users the option to sign in / register with their email or Google account.
         // If users choose to register with their email,
         // they will need to create a password as well.
+        val scopes = listOf("repo")
         val providers = arrayListOf(
-            AuthUI.IdpConfig.GitHubBuilder().build()
+            AuthUI.IdpConfig.GitHubBuilder().setScopes(scopes).build()
         )
 
         resultLauncher.launch(
@@ -81,7 +82,8 @@ class AuthenticationActivity : AppCompatActivity() {
         val response = IdpResponse.fromResultIntent(data)
         if (resultCode == Activity.RESULT_OK) {
             // User successfully signed in
-            Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.uid + "!")
+            Timber.i("Successfully signed in user " + FirebaseAuth.getInstance().currentUser?.displayName + "!")
+            Timber.i("Successfully signed in token " + response?.idpToken)
             userManager.displayName = FirebaseAuth.getInstance().currentUser?.displayName.toString()
             userManager.uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
             userManager.token = response?.idpToken ?: ""
