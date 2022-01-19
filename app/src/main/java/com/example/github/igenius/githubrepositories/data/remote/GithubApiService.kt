@@ -12,6 +12,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.github.com/"
 
@@ -27,11 +28,11 @@ private val retrofit = Retrofit.Builder()
 
 interface GithubApiService {
 
-    @GET("/users/{user}/repos")
+    @GET("search/repositories")
     suspend fun getReposForUser(
         @Header("Authorization") token: String,
-        @Path("user") user: String
-    ): List<RepositoryDTO>
+        @Query("q") user: String
+    ): NetworkRepository
 
     @GET("/user")
     suspend fun getUser(

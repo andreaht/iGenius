@@ -18,7 +18,7 @@ class RemoteDataSource @Inject constructor(private val userManager: UserManager)
                 repos.addAll(
                     GithubApi.retrofitService.getReposForUser(
                         "Token " + userManager.token,
-                        userManager.user.login)
+                        "user:" + userManager.user.login).asRepositoryDTO()
                 )
                 Result.Success(repos)
             }

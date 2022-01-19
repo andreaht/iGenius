@@ -74,8 +74,7 @@ class RepositoriesListViewModel @Inject constructor(
                     showSnackBar.value = result.message
             }
 
-            if(result is Result.Success && (result.data as List<*>).isNotEmpty())
-                loadLocalRepos()
+            loadLocalRepos()
         }
     }
 
