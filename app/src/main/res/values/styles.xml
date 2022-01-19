@@ -4,35 +4,29 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/accentColor</item>
-        <item name="android:textColorHint">@android:color/darker_gray</item>
-        <item name="android:windowBackground">@color/primaryColor</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
 
     <style name="CustomCardview" parent="CardView">
-        <item name="cardBackgroundColor">@color/primaryColor</item>
+        <item name="cardBackgroundColor">@color/colorCardBackground</item>
     </style>
 
     <!-- Button Styles -->
     <style name="Button" parent="Widget.AppCompat.Button.Colored">
-        <item name="colorButtonNormal">@color/ok_green_color</item>
-        <item name="colorControlHighlight">@color/selected_green_color</item>
-        <item name="android:textColor">@color/white_text_color</item>
-        <item name="colorAccent">@color/selected_green_color</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorOnPrimary</item>
     </style>
 
     <style name="textBox">
         <item name="android:textSize">@dimen/text_size_normal</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColor">#FFFFFFFF</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
     <style name="textBoxContent">
         <item name="android:textSize">@dimen/text_size_normal</item>
-        <item name="android:textColor">@android:color/darker_gray</item>
+        <item name="android:textColor">#B3FFFFFF</item>
         <item name="android:fontFamily">@font/roboto</item>
     </style>
 
