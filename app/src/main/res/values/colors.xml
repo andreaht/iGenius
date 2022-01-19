@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="background">#303030</color>
+    <color name="colorAppBar">#212121</color>
     <color name="colorCardBackground">#424242</color>
     <color name="colorPrimarySurface">#1E1E1E</color>
     <color name="colorPrimary">#BB86FC</color>

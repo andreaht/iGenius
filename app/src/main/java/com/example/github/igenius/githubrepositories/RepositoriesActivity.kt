@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
 import com.example.github.igenius.authentication.AuthenticationActivity
-import com.example.github.igenius.databinding.ActivityProjectsBinding
+import com.example.github.igenius.databinding.ActivityRepositoriesBinding
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -26,14 +26,14 @@ class RepositoriesActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModel: RepositoriesViewModel
 
-    private lateinit var binding: ActivityProjectsBinding
+    private lateinit var binding: ActivityRepositoriesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         (application as GithubApplication).appComponent.inject(this)
 
         super.onCreate(savedInstanceState)
-        binding = ActivityProjectsBinding.inflate(layoutInflater)
+        binding = ActivityRepositoriesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         observeAuthenticationState()

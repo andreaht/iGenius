@@ -39,12 +39,11 @@ class RepositoriesListFragment : BaseFragment() {
             inflater, container, false
         )
         binding.viewModel = _viewModel
-
-        setHasOptionsMenu(true)
-        setDisplayHomeAsUpEnabled(false)
-        setTitle(getString(R.string.app_name))
-
-        binding.refreshLayout.setOnRefreshListener { _viewModel.loadRepositories() }
+//
+        binding.refreshLayout.setOnRefreshListener {
+            _viewModel.loadRepositories()
+            binding.refreshLayout.isRefreshing = false
+        }
 
         //link repository to bottom sheet dialog
         _viewModel.showRepositoryInfo.observe(viewLifecycleOwner, { repositoryDataItem ->
@@ -76,6 +75,11 @@ class RepositoriesListFragment : BaseFragment() {
             }
         })
 
+        _viewModel.reposList.observe(viewLifecycleOwner, {
+            if (binding.motionLayout.currentState == R.id.start)
+                binding.motionLayout.transitionToEnd()
+        })
+
         //Define and assign recyclerview repository adapter
         binding.recyclerView.adapter = RepositoriesListAdapter(RepoListener {
             Timber.i("repo clicked: %s", it.title)
@@ -96,7 +100,7 @@ class RepositoriesListFragment : BaseFragment() {
         _viewModel.loadRepositories()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout -> {
                 // add the logout implementation
@@ -113,6 +117,6 @@ class RepositoriesListFragment : BaseFragment() {
         super.onCreateOptionsMenu(menu, inflater)
 //        display logout as menu item
         inflater.inflate(R.menu.main_menu, menu)
-    }
+    }*/
 
 }
