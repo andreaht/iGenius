@@ -36,6 +36,7 @@ class LoadingButton @JvmOverloads constructor(
     private var buttonState: ButtonState by Delegates.observable<ButtonState>(ButtonState.Completed) { p, old, new ->
         when (new){
             ButtonState.Clicked -> {
+                text = context.getString(R.string.fui_progress_dialog_loading)
                 valueAnimator = ValueAnimator.ofInt(0, widthSize.toInt())
                 valueAnimator.duration = 3000
                 valueAnimator.addUpdateListener {
@@ -70,7 +71,8 @@ class LoadingButton @JvmOverloads constructor(
 
     fun setText(resid:Int){
         buttonText = context.getString(resid)
-        text = buttonText
+        if(buttonState != ButtonState.Clicked)
+            text = buttonText
         invalidate()
     }
 
@@ -111,7 +113,6 @@ class LoadingButton @JvmOverloads constructor(
         canvas.drawColor(buttonBackgroundColor)
 
         if(buttonState == ButtonState.Clicked) {
-            paint.getTextBounds(text,0,text.length, textBounds)
             canvas.drawRect(0f, 0f, progress.toFloat(), heightSize, paintRect)
             canvas.drawArc(
                 widthSize / 2 + textBounds.width() / 2 + circleMargin,
@@ -124,12 +125,12 @@ class LoadingButton @JvmOverloads constructor(
                 buttonState = ButtonState.Completed
         }
 
+        paint.getTextBounds(text,0,text.length, textBounds)
         canvas.drawText(text, widthSize/2, heightSize/2 + paint.textSize/4, paint)
     }
 
     override fun performClick(): Boolean {
         return if (buttonState != ButtonState.Clicked) {
-            text = context.getString(R.string.fui_progress_dialog_loading)
             buttonState = ButtonState.Clicked
             super.performClick()
         } else {
