@@ -12,7 +12,6 @@ import com.example.github.igenius.databinding.FragmentRepositoriesBinding
 import com.example.github.igenius.githubrepositories.RepositoriesActivity
 import com.example.github.igenius.utils.setDisplayHomeAsUpEnabled
 import com.example.github.igenius.utils.setTitle
-import com.example.github.igenius.utils.setup
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.udacity.project4.base.BaseFragment
 import timber.log.Timber
@@ -45,7 +44,7 @@ class RepositoriesListFragment : BaseFragment() {
         setDisplayHomeAsUpEnabled(false)
         setTitle(getString(R.string.app_name))
 
-        binding.refreshLayout.setOnRefreshListener { _viewModel.loadLocalRepos() }
+        binding.refreshLayout.setOnRefreshListener { _viewModel.loadRepositories() }
 
         //link repository to bottom sheet dialog
         _viewModel.showRepositoryInfo.observe(viewLifecycleOwner, { repositoryDataItem ->
@@ -94,7 +93,7 @@ class RepositoriesListFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         //load the repositories list on the ui
-        _viewModel.loadLocalRepos()
+        _viewModel.loadRepositories()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

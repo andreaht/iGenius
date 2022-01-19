@@ -21,7 +21,7 @@ class RepositoriesListViewModel @Inject constructor(
      * Get all the repositories from the DataSource and add them to the remindersList to be shown on the UI,
      * or show error if any
      */
-    fun loadLocalRepos() {
+    private fun loadLocalRepos() {
         showLoading.value = true
         viewModelScope.launch {
             //interacting with the dataSource has to be through a coroutine
@@ -57,15 +57,7 @@ class RepositoriesListViewModel @Inject constructor(
         showNoData.value = reposList.value == null || reposList.value!!.isEmpty()
     }
 
-    init {
-        showNoData.observeForever { noData ->
-            if(noData) {
-                loadRemoteRepos()
-            }
-        }
-    }
-
-    private fun loadRemoteRepos() {
+    fun loadRepositories() {
 
         showLoading.value = true
         viewModelScope.launch {

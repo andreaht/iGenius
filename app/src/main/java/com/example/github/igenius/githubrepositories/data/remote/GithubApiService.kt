@@ -29,11 +29,13 @@ interface GithubApiService {
 
     @GET("/users/{user}/repos")
     suspend fun getReposForUser(
+        @Header("Authorization") token: String,
         @Path("user") user: String
     ): List<RepositoryDTO>
 
     @GET("/user")
-    suspend fun getUser(@Header("Authorization") token: String
+    suspend fun getUser(
+        @Header("Authorization") token: String
     ): UserDTO
 
     @GET("/user/starred/{user}/{repo}")
