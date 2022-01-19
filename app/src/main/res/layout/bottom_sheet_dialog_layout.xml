@@ -79,6 +79,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/repo_description"
             app:progressColor="@color/colorOnPrimary"
+            app:text="@string/star"
             app:textColor="@color/colorOnSurface" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

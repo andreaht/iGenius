@@ -25,6 +25,7 @@ class LoadingButton @JvmOverloads constructor(
     private var buttonProgressColor = 0
     private var buttonCircleColor = 0
     private var buttonTextColor = 0
+    private var buttonText = ""
 
     private var valueAnimator = ValueAnimator()
     private var progress = 0
@@ -45,7 +46,7 @@ class LoadingButton @JvmOverloads constructor(
                 valueAnimator.start()
             }
             ButtonState.Completed -> {
-                text = context.getString(R.string.star)
+                text = buttonText
                 valueAnimator.cancel()
                 invalidate()
             }
@@ -62,8 +63,15 @@ class LoadingButton @JvmOverloads constructor(
             buttonProgressColor = getColor(R.styleable.LoadingButton_progressColor, 0)
             buttonCircleColor = getColor(R.styleable.LoadingButton_circleColor, 0)
             buttonTextColor = getColor(R.styleable.LoadingButton_textColor, 0)
+            buttonText = getString(R.styleable.LoadingButton_text) ?: ""
         }
 
+    }
+
+    fun setText(resid:Int){
+        buttonText = context.getString(resid)
+        text = buttonText
+        invalidate()
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

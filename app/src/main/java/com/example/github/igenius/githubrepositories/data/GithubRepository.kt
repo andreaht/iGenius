@@ -31,4 +31,8 @@ class GithubRepository @Inject constructor(
     suspend fun getRemoteRepos(): Result<List<RepositoryDTO>> {
         return remoteDataSource.getRepos()
     }
+
+    suspend fun getRepositoryStarred(repositoryName: String): Result<Boolean> {
+        return remoteDataSource.getRepositoryStarred(repositoryName)
+    }
 }

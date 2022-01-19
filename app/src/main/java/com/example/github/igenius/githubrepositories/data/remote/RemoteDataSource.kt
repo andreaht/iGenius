@@ -26,4 +26,27 @@ class RemoteDataSource @Inject constructor(private val userManager: UserManager)
             Result.Error(e.localizedMessage)
         }
     }
+
+    override suspend fun getRepositoryStarred(repositoryName: String): Result<Boolean> {
+        return try {
+            if(userManager.isTokenInitialized() && !userManager.isUserInitialized())
+                userManager.user = GithubApi.retrofitService.getUser("Token " + userManager.token)
+            if(userManager.isUserInitialized()) {
+                val response = GithubApi.retrofitService.getRepoStarred(
+                    "Token " + userManager.token,
+                    userManager.user.login,
+                    repositoryName
+                )
+                return when {
+                    response.code() == 204 -> Result.Success(true)
+                    response.code() == 404 -> Result.Success(false)
+                    else -> Result.Error(response.message())
+                }
+            }
+            else
+                Result.Error("")
+        } catch (e: Exception) {
+            Result.Error(e.localizedMessage)
+        }
+    }
 }

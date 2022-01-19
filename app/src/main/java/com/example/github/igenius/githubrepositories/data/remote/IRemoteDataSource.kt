@@ -6,4 +6,5 @@ import com.example.github.igenius.githubrepositories.data.dto.Result
 interface IRemoteDataSource {
 
     suspend fun getRepos(): Result<List<RepositoryDTO>>
+    suspend fun getRepositoryStarred(repositoryName: String): Result<Boolean>
 }

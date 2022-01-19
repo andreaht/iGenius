@@ -92,7 +92,29 @@ class RepositoriesListViewModel @Inject constructor(
     val showRepositoryInfo
         get() = _showRepositoryInfo
 
+    private val _showRepositoryInfoStarred = MutableLiveData<Boolean>()
+    val showRepositoryInfoStarred
+        get() = _showRepositoryInfoStarred
+
     fun onRepositoryClicked(repository: RepositoryDataItem) {
         _showRepositoryInfo.value = repository
+        getRepositoryStarred(repository.title)
+    }
+
+    fun starRepository(repositoryName: String) {
+        viewModelScope.launch {
+            //repository.getRepositoryStarred(repositoryName)
+        }
+    }
+
+    private fun getRepositoryStarred(repositoryName: String) {
+        viewModelScope.launch {
+            when (val result = repository.getRepositoryStarred(repositoryName)) {
+                is Result.Success<*> ->
+                    _showRepositoryInfoStarred.value = (result.data as Boolean)
+                is Result.Error ->
+                    showSnackBar.value = result.message
+            }
+        }
     }
 }

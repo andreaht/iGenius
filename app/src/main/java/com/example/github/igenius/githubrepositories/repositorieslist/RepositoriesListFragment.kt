@@ -24,6 +24,7 @@ class RepositoriesListFragment : BaseFragment() {
     override lateinit var _viewModel: RepositoriesListViewModel
 
     private lateinit var binding: FragmentRepositoriesBinding
+    private lateinit var bsdBinding: BottomSheetDialogLayoutBinding
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -51,13 +52,28 @@ class RepositoriesListFragment : BaseFragment() {
             repositoryDataItem?.let {
                 //binding setup
                 val myDrawerView = layoutInflater.inflate(R.layout.bottom_sheet_dialog_layout, null)
-                val bsdBinding = BottomSheetDialogLayoutBinding.inflate(layoutInflater, myDrawerView as ViewGroup, false)
+                bsdBinding = BottomSheetDialogLayoutBinding.inflate(layoutInflater, myDrawerView as ViewGroup, false)
                 bsdBinding.repositoryDataItem = repositoryDataItem
+
+                //star button listener
+                bsdBinding.customButton.setOnClickListener {
+                    _viewModel.starRepository(bsdBinding.repoName.text.toString())
+                }
 
                 //show the view
                 val bottomSheetDialog = BottomSheetDialog(requireContext());
                 bottomSheetDialog.setContentView(bsdBinding.content)
                 bottomSheetDialog.show()
+            }
+        })
+
+        //change text of star/unstar custom button
+        _viewModel.showRepositoryInfoStarred.observe(viewLifecycleOwner, { starred ->
+            if (this::bsdBinding.isInitialized) {
+                if (starred)
+                    bsdBinding.customButton.setText(R.string.unstar)
+                else
+                    bsdBinding.customButton.setText(R.string.star)
             }
         })
 
