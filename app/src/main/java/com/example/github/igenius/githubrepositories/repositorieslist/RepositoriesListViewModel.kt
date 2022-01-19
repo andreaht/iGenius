@@ -94,7 +94,14 @@ class RepositoriesListViewModel @Inject constructor(
 
     fun starRepository(repositoryName: String) {
         viewModelScope.launch {
-            //repository.getRepositoryStarred(repositoryName)
+            if(_showRepositoryInfoStarred.value == true)
+                repository.setRepositoryNotStarred(repositoryName)
+            else
+                repository.setRepositoryStarred(repositoryName)
+
+            //refresh stars count
+            _showRepositoryInfoStarred.value = !_showRepositoryInfoStarred.value!!
+            loadRepositories()
         }
     }
 

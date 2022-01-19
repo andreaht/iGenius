@@ -7,4 +7,6 @@ interface IRemoteDataSource {
 
     suspend fun getRepos(): Result<List<RepositoryDTO>>
     suspend fun getRepositoryStarred(repositoryName: String): Result<Boolean>
+    suspend fun setRepositoryStarred(repositoryName: String): Result<Boolean>
+    suspend fun setRepositoryNotStarred(repositoryName: String): Result<Boolean>
 }

@@ -9,10 +9,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 private const val BASE_URL = "https://api.github.com/"
 
@@ -40,7 +37,21 @@ interface GithubApiService {
     ): UserDTO
 
     @GET("/user/starred/{user}/{repo}")
-    suspend fun getRepoStarred(
+    suspend fun getRepositoryStarred(
+        @Header("Authorization") token: String,
+        @Path("user") user: String,
+        @Path("repo") repo: String
+    ): Response<Any>
+
+    @PUT("/user/starred/{user}/{repo}")
+    suspend fun setRepositoryStarred(
+        @Header("Authorization") token: String,
+        @Path("user") user: String,
+        @Path("repo") repo: String
+    ): Response<Any>
+
+    @DELETE("/user/starred/{user}/{repo}")
+    suspend fun setRepositoryNotStarred(
         @Header("Authorization") token: String,
         @Path("user") user: String,
         @Path("repo") repo: String

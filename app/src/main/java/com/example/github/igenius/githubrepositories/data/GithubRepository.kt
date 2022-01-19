@@ -35,4 +35,12 @@ class GithubRepository @Inject constructor(
     suspend fun getRepositoryStarred(repositoryName: String): Result<Boolean> {
         return remoteDataSource.getRepositoryStarred(repositoryName)
     }
+
+    suspend fun setRepositoryStarred(repositoryName: String): Result<Boolean> {
+        return remoteDataSource.setRepositoryStarred(repositoryName)
+    }
+
+    suspend fun setRepositoryNotStarred(repositoryName: String): Result<Boolean> {
+        return remoteDataSource.setRepositoryNotStarred(repositoryName)
+    }
 }
