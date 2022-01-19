@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.github.igenius.R
 import com.example.github.igenius.databinding.ItRepositoryBinding
 
 class RepositoriesListAdapter(private val clickListener: RepoListener): ListAdapter<RepositoryDataItem, RepoViewHolder>(RepoDiffCallback()){
@@ -51,6 +50,6 @@ class RepoDiffCallback : DiffUtil.ItemCallback<RepositoryDataItem>() {
 }
 
 
-class RepoListener(val clickListener: (beer: RepositoryDataItem) -> Unit){
-    fun onClick(beer: RepositoryDataItem) = clickListener(beer)
+class RepoListener(val clickListener: (repositoryDataItem: RepositoryDataItem) -> Unit){
+    fun onClick(repositoryDataItem: RepositoryDataItem) = clickListener(repositoryDataItem)
 }

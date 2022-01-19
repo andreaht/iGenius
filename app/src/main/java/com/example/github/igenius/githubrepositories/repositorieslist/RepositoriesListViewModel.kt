@@ -14,11 +14,11 @@ class RepositoriesListViewModel @Inject constructor(
     app: Application,
     private val repository: GithubRepository
 ) : BaseViewModel(app) {
-    // list that holds the reminder data to be displayed on the UI
+    // list that holds the repository data to be displayed on the UI
     val reposList = MutableLiveData<List<RepositoryDataItem>>()
 
     /**
-     * Get all the reminders from the DataSource and add them to the remindersList to be shown on the UI,
+     * Get all the repositories from the DataSource and add them to the remindersList to be shown on the UI,
      * or show error if any
      */
     fun loadLocalRepos() {
@@ -51,7 +51,7 @@ class RepositoriesListViewModel @Inject constructor(
     }
 
     /**
-     * Inform the user that there's not any data if the remindersList is empty
+     * Inform the user that there's not any data if the repositoriesList is empty
      */
     private fun invalidateShowNoData() {
         showNoData.value = reposList.value == null || reposList.value!!.isEmpty()
@@ -87,7 +87,7 @@ class RepositoriesListViewModel @Inject constructor(
         }
     }
 
-    //functions to selected beer info
+    //functions to selected repository info
     private val _showRepositoryInfo = MutableLiveData<RepositoryDataItem>()
     val showRepositoryInfo
         get() = _showRepositoryInfo

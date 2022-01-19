@@ -46,7 +46,7 @@ class RepositoriesListFragment : BaseFragment() {
 
         binding.refreshLayout.setOnRefreshListener { _viewModel.loadLocalRepos() }
 
-        //link beer to bottom sheet dialog
+        //link repository to bottom sheet dialog
         _viewModel.showRepositoryInfo.observe(viewLifecycleOwner, { repositoryDataItem ->
             repositoryDataItem?.let {
                 //binding setup
@@ -61,7 +61,7 @@ class RepositoriesListFragment : BaseFragment() {
             }
         })
 
-        //Define and assign recyclerview beer adapter
+        //Define and assign recyclerview repository adapter
         binding.recyclerView.adapter = RepositoriesListAdapter(RepoListener {
             Timber.i("repo clicked: %s", it.title)
             _viewModel.onRepositoryClicked(it)
@@ -77,7 +77,7 @@ class RepositoriesListFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        //load the reminders list on the ui
+        //load the repositories list on the ui
         _viewModel.loadLocalRepos()
     }
 

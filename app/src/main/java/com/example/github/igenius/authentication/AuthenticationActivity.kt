@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 /**
  * This class should be the starting point of the app, It asks the users to sign in / register, and redirects the
- * signed in users to the RemindersActivity.
+ * signed in users to the RepositoriesActivity.
  */
 class AuthenticationActivity : AppCompatActivity() {
 

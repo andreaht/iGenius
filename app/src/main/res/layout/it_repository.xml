@@ -16,7 +16,7 @@
 
     <androidx.cardview.widget.CardView
         style="@style/CustomCardview"
-        android:id="@+id/reminderCardView"
+        android:id="@+id/repositoriesCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> clickListener.onClick(item)}"

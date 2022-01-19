@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 /**
- * The RemindersActivity that holds the reminders fragments
+ * The RepositoriesActivity that holds the repository fragments
  */
 class RepositoriesActivity : AppCompatActivity() {
 
