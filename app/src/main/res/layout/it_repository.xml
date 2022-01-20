@@ -12,6 +12,10 @@
         <variable
             name="clickListener"
             type="com.example.github.igenius.githubrepositories.repositorieslist.RepoListener" />
+
+        <variable
+            name="languageColor"
+            type="com.example.github.igenius.githubrepositories.repositorieslist.GithubLanguagesColors" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -54,31 +58,54 @@
                 app:layout_constraintTop_toBottomOf="@id/title"
                 tools:text="Description" />
 
-            <TextView
-                android:id="@+id/language"
-                style="@style/textBoxContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{item.language}"
-                android:textColor="@color/colorPrimary"
+            <ImageView
+                android:id="@+id/star"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                app:srcCompat="@drawable/ic_star_outline"
+                android:contentDescription="@string/star"
                 app:layout_constraintTop_toBottomOf="@id/description"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Language" />
-
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:tint="@color/colorStar" />
 
             <TextView
                 android:id="@+id/stars"
                 style="@style/textBoxContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@{@string/stars + item.star}"
-                android:textColor="@color/colorPrimary"
+                android:layout_marginStart="@dimen/margin_half"
+                android:text="@{Integer.toString(item.star)}"
+                android:textColor="@color/colorOnBackground"
                 app:layout_constraintTop_toBottomOf="@id/description"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintStart_toEndOf="@id/star"
                 tools:text="Stars" />
+
+            <ImageView
+                android:id="@+id/dot"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                app:srcCompat="@drawable/ic_circle_outline"
+                android:contentDescription="@string/language"
+                android:layout_marginStart="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/stars"
+                android:tintColor="@{languageColor.getColor(item.language)}"/>
+
+            <TextView
+                android:id="@+id/language"
+                style="@style/textBoxContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{item.language}"
+                android:layout_marginStart="@dimen/margin_half"
+                android:textColor="@color/colorOnBackground"
+                app:layout_constraintTop_toBottomOf="@id/description"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/dot"
+                tools:text="Language" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

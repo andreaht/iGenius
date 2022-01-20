@@ -1,12 +1,11 @@
 package com.example.github.igenius.utils
 
 import android.view.View
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.github.igenius.githubrepositories.repositorieslist.RepositoriesListAdapter
 import com.example.github.igenius.githubrepositories.repositorieslist.RepositoryDataItem
-import com.udacity.project4.base.BaseRecyclerViewAdapter
 
 
 object BindingAdapters {
@@ -41,5 +40,14 @@ object BindingAdapters {
                     view.fadeOut()
             }
         }
+    }
+
+    /**
+     * Use binding adapter to set the tint color
+     */
+    @BindingAdapter("android:tintColor")
+    @JvmStatic
+    fun setTintColor(imageView: ImageView, color: Int) {
+        imageView.setColorFilter(color)
     }
 }

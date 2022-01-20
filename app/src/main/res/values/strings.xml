@@ -6,5 +6,6 @@
     <string name="logout">Logout</string>
     <string name="stars">stars:&#160;</string>
     <string name="star">star</string>
-    <string name="unstar">unstar</string>
+    <string name="unstar">starred</string>
+    <string name="language">language</string>
 </resources>

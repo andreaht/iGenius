@@ -34,6 +34,7 @@ class RepoViewHolder(private val binding: ItRepositoryBinding): RecyclerView.Vie
     fun bind(clickListener: RepoListener, item: RepositoryDataItem) {
         binding.item = item
         binding.clickListener = clickListener
+        binding.languageColor = GithubLanguagesColors
         binding.executePendingBindings()
     }
 }
