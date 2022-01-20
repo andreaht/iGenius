@@ -1,14 +1,9 @@
 package com.example.github.igenius.githubrepositories
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import com.example.github.igenius.GithubApplication
-import com.example.github.igenius.R
-import com.example.github.igenius.authentication.AuthenticationActivity
 import com.example.github.igenius.databinding.ActivityRepositoriesBinding
 import timber.log.Timber
 import javax.inject.Inject

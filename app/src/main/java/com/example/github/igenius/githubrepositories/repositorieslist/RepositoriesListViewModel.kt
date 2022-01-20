@@ -71,7 +71,7 @@ class RepositoriesListViewModel @Inject constructor(
                     }
                 }
                 is Result.Error ->
-                    showSnackBar.value = result.message
+                    showSnackBar.value = "Error loading repository from github, please check network"
             }
 
             loadLocalRepos()
@@ -111,7 +111,7 @@ class RepositoriesListViewModel @Inject constructor(
                 is Result.Success<*> ->
                     _showRepositoryInfoStarred.value = (result.data as Boolean)
                 is Result.Error ->
-                    showSnackBar.value = result.message
+                    showSnackBar.value = "error getting starred info, please check network"
             }
         }
     }

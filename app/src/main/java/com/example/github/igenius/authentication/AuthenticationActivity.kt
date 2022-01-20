@@ -14,6 +14,8 @@ import com.example.github.igenius.githubrepositories.RepositoriesActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -42,19 +44,30 @@ class AuthenticationActivity : AppCompatActivity() {
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             firebaseLoginResult(result.resultCode, result.data)
         }
-        binding.authButton.setOnClickListener { launchSignInFlow(resultLauncher) }
 
-        //enables authomatic sign in if user is already signed in
-        if(FirebaseAuth.getInstance().currentUser != null)
+        //enables automatic sign in if user is already signed in
+        if(FirebaseAuth.getInstance().currentUser != null) {
             launchSignInFlow(resultLauncher)
+        }
+
+        //change login to logout button according to the firebase auth state
+        FirebaseAuth.getInstance().addAuthStateListener { firebaseAuth ->
+            if (firebaseAuth.currentUser == null)
+                binding.authButton.setText(R.string.login)
+            else
+                binding.authButton.setText(R.string.logout)
+        }
+
+        //handle signin/signout button clicks
+        binding.authButton.setOnClickListener {
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                Firebase.auth.signOut()
+            }else
+                launchSignInFlow(resultLauncher)
+        }
 
     }
 
-
-
-    /**
-     * got this function from the udacity firebase course
-     */
     private fun launchSignInFlow(resultLauncher: ActivityResultLauncher<Intent>) {
         // Give users the option to sign in / register with their email or Google account.
         // If users choose to register with their email,
@@ -82,6 +95,8 @@ class AuthenticationActivity : AppCompatActivity() {
             userManager.displayName = FirebaseAuth.getInstance().currentUser?.displayName.toString()
             userManager.uid = FirebaseAuth.getInstance().currentUser?.uid.toString()
             userManager.token = response?.idpToken ?: ""
+
+            binding.authButton.setText(R.string.logout)
 
             //launch repository activity
             val intent = Intent(this, RepositoriesActivity::class.java)
