@@ -1,17 +1,13 @@
 package com.example.github.igenius.githubrepositories.repositorieslist
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.ContextCompat
 import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
-import com.example.github.igenius.authentication.AuthenticationActivity
 import com.example.github.igenius.databinding.BottomSheetDialogLayoutBinding
 import com.example.github.igenius.databinding.FragmentRepositoriesBinding
-import com.example.github.igenius.githubrepositories.RepositoriesActivity
-import com.example.github.igenius.utils.setDisplayHomeAsUpEnabled
-import com.example.github.igenius.utils.setTitle
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.udacity.project4.base.BaseFragment
 import timber.log.Timber
@@ -68,10 +64,15 @@ class RepositoriesListFragment : BaseFragment() {
         //change text of star/unstar custom button
         _viewModel.showRepositoryInfoStarred.observe(viewLifecycleOwner, { starred ->
             if (this::bsdBinding.isInitialized) {
-                if (starred)
+                if (starred) {
                     bsdBinding.customButton.setText(R.string.unstar)
-                else
+                    bsdBinding.customButton.setButtonBackgroundColor(
+                        ContextCompat.getColor(requireContext(),R.color.colorStar))
+                }else {
                     bsdBinding.customButton.setText(R.string.star)
+                    bsdBinding.customButton.setButtonBackgroundColor(
+                        ContextCompat.getColor(requireContext(),R.color.colorPrimary))
+                }
             }
         })
 

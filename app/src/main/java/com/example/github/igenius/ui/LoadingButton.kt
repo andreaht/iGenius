@@ -4,10 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.withStyledAttributes
@@ -30,6 +27,7 @@ class LoadingButton @JvmOverloads constructor(
     private var valueAnimator = ValueAnimator()
     private var progress = 0
     private var text = context.getString(R.string.star)
+    private var canvasButtonBackgroundColor = 0
     private var textBounds = Rect()
     private val circleMargin = 30f
 
@@ -48,6 +46,7 @@ class LoadingButton @JvmOverloads constructor(
             }
             ButtonState.Completed -> {
                 text = buttonText
+                canvasButtonBackgroundColor = buttonBackgroundColor
                 valueAnimator.cancel()
                 invalidate()
             }
@@ -56,8 +55,6 @@ class LoadingButton @JvmOverloads constructor(
 
 
     init {
-        buttonState = ButtonState.Completed
-        isClickable = true;
 
         context.withStyledAttributes(attrs, R.styleable.LoadingButton) {
             buttonBackgroundColor = getColor(R.styleable.LoadingButton_backgroundColor, 0)
@@ -67,12 +64,22 @@ class LoadingButton @JvmOverloads constructor(
             buttonText = getString(R.styleable.LoadingButton_text) ?: ""
         }
 
+        buttonState = ButtonState.Completed
+        isClickable = true;
+
     }
 
     fun setText(resid:Int){
         buttonText = context.getString(resid)
         if(buttonState != ButtonState.Clicked)
             text = buttonText
+        invalidate()
+    }
+
+    fun setButtonBackgroundColor(color:Int){
+        buttonBackgroundColor = color
+        if(buttonState != ButtonState.Clicked)
+            canvasButtonBackgroundColor = buttonBackgroundColor
         invalidate()
     }
 
@@ -110,7 +117,7 @@ class LoadingButton @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        canvas.drawColor(buttonBackgroundColor)
+        canvas.drawColor(canvasButtonBackgroundColor)
 
         if(buttonState == ButtonState.Clicked) {
             canvas.drawRect(0f, 0f, progress.toFloat(), heightSize, paintRect)
