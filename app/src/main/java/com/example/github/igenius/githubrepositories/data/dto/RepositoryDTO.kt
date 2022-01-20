@@ -9,10 +9,11 @@ import java.util.*
 /**
  * Immutable model class for a Repository. In order to compile with Room
  *
- * @param title         title of the repository
+ * @param name         name of the repository
  * @param description   description of the repository
  * @param language      main programming language of the repository
  * @param star      stars of the repository
+ * @param isPrivate   whether if repository is private or not
  */
 
 @Entity(tableName = "repository")
@@ -20,5 +21,6 @@ data class RepositoryDTO (
     @PrimaryKey @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "description") var description: String?,
     @ColumnInfo(name = "language") var language: String?,
-    @ColumnInfo(name = "star") @Json(name = "watchers_count") var star: Int?
+    @ColumnInfo(name = "star") @Json(name = "watchers_count") var star: Int?,
+    @ColumnInfo(name = "private") @Json(name = "private") var isPrivate: Boolean
 )

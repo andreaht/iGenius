@@ -14,14 +14,14 @@ interface RepositoriesDao {
     /**
      * @return all repository.
      */
-    @Query("SELECT * FROM repository")
+    @Query("SELECT * FROM repository ORDER BY private DESC")
     suspend fun getRepositories(): List<RepositoryDTO>
 
     /**
      * @param repoName the name of the repository
      * @return the repository object with the repositoryId
      */
-    @Query("SELECT * FROM repository where name = :repoName")
+    @Query("SELECT * FROM repository WHERE name = :repoName ORDER BY private DESC")
     suspend fun getRepositoryById(repoName: String): RepositoryDTO?
 
     /**

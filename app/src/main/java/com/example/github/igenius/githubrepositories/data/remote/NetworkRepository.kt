@@ -17,7 +17,8 @@ fun NetworkRepository.asRepositoryDTO(): List<RepositoryDTO> {
             name = it.name,
             description = it.description,
             language = it.language,
-            star = it.star
+            star = it.star,
+            isPrivate = it.isPrivate
         )
     }
 }

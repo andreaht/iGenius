@@ -30,13 +30,14 @@ class RepositoriesListViewModel @Inject constructor(
             when (result) {
                 is Result.Success<*> -> {
                     val dataList = ArrayList<RepositoryDataItem>()
-                    dataList.addAll((result.data as List<RepositoryDTO>).map { project ->
-                        //map the project data from the DB to the be ready to be displayed on the UI
+                    dataList.addAll((result.data as List<RepositoryDTO>).map { repository ->
+                        //map the repository data from the DB to the be ready to be displayed on the UI
                         RepositoryDataItem(
-                            project.name,
-                            project.description,
-                            project.language,
-                            project.star
+                            repository.name,
+                            repository.description,
+                            repository.language,
+                            repository.star,
+                            repository.isPrivate
                         )
                     })
                     reposList.value = dataList

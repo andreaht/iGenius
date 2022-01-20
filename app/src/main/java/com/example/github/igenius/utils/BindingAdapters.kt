@@ -50,4 +50,16 @@ object BindingAdapters {
     fun setTintColor(imageView: ImageView, color: Int) {
         imageView.setColorFilter(color)
     }
+
+    /**
+     * Use binding adapter to set the visibility
+     */
+    @BindingAdapter("android:itemVisible")
+    @JvmStatic
+    fun setVisible(view: View, visible: Boolean) {
+        if (visible)
+            view.visibility = View.VISIBLE
+        else
+            view.visibility = View.GONE
+    }
 }

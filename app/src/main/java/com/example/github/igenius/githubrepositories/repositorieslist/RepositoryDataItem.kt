@@ -12,5 +12,6 @@ data class RepositoryDataItem(
     var title: String,
     var description: String?,
     var language: String?,
-    var star: Int?
+    var star: Int?,
+    var isPrivate: Boolean
 ) : Parcelable

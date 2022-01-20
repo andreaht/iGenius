@@ -543,9 +543,10 @@ object GithubLanguagesColors {
         "Zimpl" to "#d67711"
     )
 
-    fun getColor(language: String): Int {
-        val color = Color.parseColor(colorMap[language] ?: "#FFFFFF")
-        Timber.i("Color: $color")
-        return Color.parseColor(colorMap[language] ?: "#FFFFFF")
+    fun getColor(language: String?): Int {
+        return if(language == null)
+            Color.TRANSPARENT
+        else
+            Color.parseColor(colorMap[language] ?: "#FFFFFF")
     }
 }
