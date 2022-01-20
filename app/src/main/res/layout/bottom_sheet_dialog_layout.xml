@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="userManager"
+            type="com.example.github.igenius.UserManager" />
+
+        <variable
             name="repositoryDataItem"
             type="com.example.github.igenius.githubrepositories.repositorieslist.RepositoryDataItem" />
     </data>
@@ -16,68 +20,91 @@
         android:background="@color/colorCardBackground">
 
         <ImageView
-            android:id="@+id/bookmark"
+            android:id="@+id/avatar_photo"
+            profileImage="@{userManager.user.avatar_url}"
+            android:layout_width="@dimen/icon_width"
+            android:layout_height="@dimen/icon_height"
+            android:layout_marginStart="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/username"
+            style="@style/textBoxContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_wide"
-            android:src="@drawable/ic_baseline_bookmark_48"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginEnd="@dimen/margin_half"
+            android:fontFamily="@font/roboto"
+            android:text="@{userManager.user.login}"
+            app:layout_constraintBottom_toBottomOf="@+id/avatar_photo"
+            app:layout_constraintTop_toTopOf="@+id/avatar_photo"
+            app:layout_constraintStart_toEndOf="@id/avatar_photo" />
 
         <TextView
             android:id="@+id/repo_name"
             style="@style/textBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginEnd="@dimen/margin_half"
+            android:layout_marginTop="@dimen/margin_normal"
             android:fontFamily="@font/roboto"
             android:text="@{repositoryDataItem.title}"
             android:textSize="@dimen/text_size_large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bookmark" />
+            app:layout_constraintTop_toBottomOf="@+id/avatar_photo"
+            app:layout_constraintStart_toStartOf="@id/avatar_photo" />
 
         <TextView
             android:id="@+id/repo_description"
             style="@style/textBoxContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_wide"
+            android:layout_marginTop="@dimen/margin_normal"
             android:layout_marginEnd="@dimen/margin_half"
             android:text="@{repositoryDataItem.description}"
-            app:layout_constraintEnd_toStartOf="@+id/language"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/repo_name" />
+            app:layout_constraintStart_toStartOf="@+id/avatar_photo"
+            app:layout_constraintTop_toBottomOf="@id/repo_name"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/private_repo_img"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginEnd="@dimen/margin_half"
+            android:src="@drawable/ic_baseline_lock_24"
+            android:itemVisible="@{repositoryDataItem.private}"
+            app:layout_constraintStart_toStartOf="@id/avatar_photo"
+            app:layout_constraintTop_toBottomOf="@id/repo_description" />
 
         <TextView
-            android:id="@+id/language"
+            android:id="@+id/private_repo_text"
             style="@style/textBoxContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_wide"
             android:layout_marginEnd="@dimen/margin_half"
-            android:text="@{repositoryDataItem.language}"
-            android:textColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="@id/repo_description"
-            app:layout_constraintEnd_toEndOf="parent" />
-
+            android:text="@string/private_repo"
+            android:itemVisible="@{repositoryDataItem.private}"
+            app:layout_constraintBottom_toBottomOf="@id/private_repo_img"
+            app:layout_constraintStart_toEndOf="@id/private_repo_img" />
 
         <com.example.github.igenius.ui.LoadingButton
             android:id="@+id/custom_button"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="45dp"
             android:layout_marginStart="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_wide"
-            android:layout_marginEnd="@dimen/margin_half"
+            android:layout_marginEnd="@dimen/margin_normal"
             android:layout_marginBottom="@dimen/margin_wide"
             app:backgroundColor="@color/colorPrimary"
             app:circleColor="@color/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/repo_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/private_repo_text"
             app:progressColor="@color/colorOnPrimary"
             app:text="@string/star"
             app:textColor="@color/colorOnSurface" />

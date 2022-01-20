@@ -8,4 +8,5 @@
     <string name="star">star</string>
     <string name="unstar">starred</string>
     <string name="language">language</string>
+    <string name="private_repo">Private</string>
 </resources>

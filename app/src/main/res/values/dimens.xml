@@ -15,8 +15,8 @@
 
     <dimen name="margin_wide">24dp</dimen>
     <dimen name="margin_half">8dp</dimen>
-    <dimen name="icon_height">110dp</dimen>
-    <dimen name="icon_width">55dp</dimen>
+    <dimen name="icon_height">20dp</dimen>
+    <dimen name="icon_width">20dp</dimen>
     <dimen name="icon_big_height">180dp</dimen>
     <dimen name="icon_big_width">90dp</dimen>
     <dimen name="icon_half_size">64dp</dimen>

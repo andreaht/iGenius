@@ -2,8 +2,12 @@ package com.example.github.igenius.utils
 
 import android.view.View
 import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.github.igenius.R
 import com.example.github.igenius.githubrepositories.repositorieslist.RepositoriesListAdapter
 import com.example.github.igenius.githubrepositories.repositorieslist.RepositoryDataItem
 
@@ -61,5 +65,23 @@ object BindingAdapters {
             view.visibility = View.VISIBLE
         else
             view.visibility = View.GONE
+    }
+}
+
+
+@BindingAdapter("profileImage")
+fun fetchImage(imgView: ImageView, src: String?) {
+    src?.let {
+        val imgUri = src.toUri().buildUpon().scheme("https").build()
+        //Add Glide call to load image use ic_beer_mug as a placeholder and for errors.
+        Glide.with(imgView.context)
+            .load(imgUri)
+            .apply(
+                RequestOptions()
+                    .circleCrop()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_profile)
+            )
+            .into(imgView)
     }
 }

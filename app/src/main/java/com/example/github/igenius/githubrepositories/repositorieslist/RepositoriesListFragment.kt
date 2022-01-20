@@ -6,6 +6,7 @@ import android.view.*
 import androidx.core.content.ContextCompat
 import com.example.github.igenius.GithubApplication
 import com.example.github.igenius.R
+import com.example.github.igenius.UserManager
 import com.example.github.igenius.databinding.BottomSheetDialogLayoutBinding
 import com.example.github.igenius.databinding.FragmentRepositoriesBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -17,6 +18,10 @@ class RepositoriesListFragment : BaseFragment() {
     // You want Dagger to provide an instance of ProjectsListViewModel from the graph
     @Inject
     override lateinit var _viewModel: RepositoriesListViewModel
+
+    // @Inject annotated fields will be provided by Dagger
+    @Inject
+    lateinit var userManager: UserManager
 
     private lateinit var binding: FragmentRepositoriesBinding
     private lateinit var bsdBinding: BottomSheetDialogLayoutBinding
@@ -46,8 +51,10 @@ class RepositoriesListFragment : BaseFragment() {
             repositoryDataItem?.let {
                 //binding setup
                 val myDrawerView = layoutInflater.inflate(R.layout.bottom_sheet_dialog_layout, null)
+                Timber.i("usermanager avatar: ${userManager.user.avatar_url}")
                 bsdBinding = BottomSheetDialogLayoutBinding.inflate(layoutInflater, myDrawerView as ViewGroup, false)
                 bsdBinding.repositoryDataItem = repositoryDataItem
+                bsdBinding.userManager = userManager
 
                 //star button listener
                 bsdBinding.customButton.setOnClickListener {
@@ -100,24 +107,4 @@ class RepositoriesListFragment : BaseFragment() {
         //load the repositories list on the ui
         _viewModel.loadRepositories()
     }
-
-    /*override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.logout -> {
-                // add the logout implementation
-                val intent = Intent(context, AuthenticationActivity::class.java)
-                    .putExtra("requestCode", RepositoriesActivity.SIGN_OUT_REQUEST_CODE)
-                startActivity(intent)
-            }
-        }
-        return super.onOptionsItemSelected(item)
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-//        display logout as menu item
-        inflater.inflate(R.menu.main_menu, menu)
-    }*/
-
 }
