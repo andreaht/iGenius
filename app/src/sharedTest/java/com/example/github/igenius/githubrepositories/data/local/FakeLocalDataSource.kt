@@ -2,8 +2,9 @@ package com.example.github.igenius.githubrepositories.data.local
 
 import com.example.github.igenius.githubrepositories.data.dto.RepositoryDTO
 import com.example.github.igenius.githubrepositories.data.dto.Result
+import javax.inject.Inject
 
-class FakeLocalDataSource : ILocalDataSource {
+class FakeLocalDataSource @Inject constructor(): ILocalDataSource {
 
     private val repositories = mutableListOf<RepositoryDTO>()
 
