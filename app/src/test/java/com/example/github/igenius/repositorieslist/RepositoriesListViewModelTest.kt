@@ -3,6 +3,7 @@ package com.example.github.igenius.repositorieslist
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import com.example.github.igenius.getOrAwaitValue
 import com.example.github.igenius.githubrepositories.data.GithubRepository
 import com.example.github.igenius.githubrepositories.data.dto.RepositoryDTO
@@ -21,6 +22,7 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.`when` as whenever
 
 @RunWith(AndroidJUnit4::class)
+@SmallTest
 class RepositoriesListViewModelTest {
 
     // Executes each task synchronously using Architecture Components.
