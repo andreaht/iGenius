@@ -1,6 +1,7 @@
 package com.example.github.igenius.githubrepositories.data.remote
 
 import com.example.github.igenius.githubrepositories.data.dto.RepositoryDTO
+import com.example.github.igenius.githubrepositories.repositorieslist.RepositoryDataItem
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,3 +23,16 @@ fun NetworkRepository.asRepositoryDTO(): List<RepositoryDTO> {
         )
     }
 }
+
+fun List<RepositoryDataItem>.asRepositoryDTO(): List<RepositoryDTO> {
+    return this.map {
+        RepositoryDTO(
+            name = it.title,
+            description = it.description,
+            language = it.language,
+            star = it.star,
+            isPrivate = it.isPrivate
+        )
+    }
+}
+
