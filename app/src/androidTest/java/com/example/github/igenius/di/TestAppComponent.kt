@@ -1,5 +1,7 @@
 package com.example.github.igenius.di
 
+import android.app.Application
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -7,4 +9,11 @@ import javax.inject.Singleton
 @Singleton
 // Includes TestStorageModule that overrides objects provided in StorageModule
 @Component(modules = [TestDataModule::class, RoomModule::class])
-interface TestAppComponent : AppComponent
+interface TestAppComponent : AppComponent {
+    // Factory to create instances of the AppComponent
+    @Component.Factory
+    interface Factory {
+        // With @BindsInstance, the Application passed in will be available in the graph
+        fun create(@BindsInstance application: Application): AppComponent
+    }
+}
