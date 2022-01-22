@@ -8,7 +8,7 @@ import timber.log.Timber
 
 // Definition of the Application graph
 @Component
-interface ApplicationComponent {  }
+interface ApplicationComponent {}
 
 // appComponent lives in the Application class to share its lifecycle
 open class GithubApplication : Application() {
@@ -27,9 +27,5 @@ open class GithubApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
-    }
-
-    open val userManager by lazy {
-        UserManager()
     }
 }

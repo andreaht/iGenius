@@ -137,7 +137,7 @@ dependencies {
     implementation "androidx.test:core:$androidXTestCoreVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentVersion"
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
-    androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
+     androidTestImplementation "org.mockito:mockito-inline:$mockitoVersion"
 
     implementation "com.google.firebase:firebase-auth-ktx:21.0.1"
 
