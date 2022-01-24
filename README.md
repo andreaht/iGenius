@@ -1,5 +1,8 @@
 # Github App
-I've implemented the app trying to follow the provided guidelines. Here there is a recap of my work## Installation
+
+I've implemented the app trying to follow the provided guidelines. Here there is a recap of my work
+
+## Installation
 
 Step by step explanation of how to get a dev environment running.
 
