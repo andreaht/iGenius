@@ -50,6 +50,8 @@ class LoadingButton @JvmOverloads constructor(
                 valueAnimator.cancel()
                 invalidate()
             }
+
+            else -> {}
         }
     }
 
@@ -150,11 +152,11 @@ class LoadingButton @JvmOverloads constructor(
      */
     private fun ValueAnimator.disableViewDuringAnimation(view: View) {
         addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
                 view.isEnabled = false
             }
 
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 view.isEnabled = true
             }
         })
