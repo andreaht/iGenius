@@ -48,12 +48,14 @@ android {
         jvmTarget = '1.8'
     }
     packagingOptions {
+        resources {
+            pickFirsts += ['win32-x86-64/attach_hotspot_windows.dll', 'win32-x86/attach_hotspot_windows.dll']
+        }
+
         // for JNA and JNA-platform
         resources.excludes.add("META-INF/*")
         // for byte-buddy
         resources.excludes.add("META-INF/licenses/ASM")
-        pickFirst "win32-x86-64/attach_hotspot_windows.dll"
-        pickFirst "win32-x86/attach_hotspot_windows.dll"
     }
 }
 
